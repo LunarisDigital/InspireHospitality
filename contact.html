@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact Us &mdash; Inspire Hospitality</title>
+    <meta
+      name="description"
+      content="Begin a conversation with Inspire Hospitality. We welcome inquiries from aligned capital partners, owners and operators. Discretion assured."
+    />
+    <link rel="icon" type="image/avif" href="assets/img/brand/Logo.avif" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/pages.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html" aria-label="Inspire Hospitality, home">
+          <img class="nav__logo" src="assets/img/brand/logo-02.png" alt="Inspire Hospitality" />
+        </a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a class="nav__cta" href="contact.html" aria-current="page">Contact Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ SUBHERO ============ -->
+      <section class="subhero" aria-labelledby="contact-h">
+        <div class="subhero__media" aria-hidden="true">
+          <img src="assets/img/contact/%E6%82%A6%E8%89%BA%E8%87%B3%E5%B0%8A%E7%A7%81%E5%AE%B6%E8%8A%B1%E5%9B%AD%E5%A5%97%E6%88%BF%20(2).JPG" alt="" />
+        </div>
+        <div class="subhero__scrim" aria-hidden="true"></div>
+        <div class="subhero__grain" aria-hidden="true"></div>
+        <div class="container subhero__content">
+          <p class="subhero__eyebrow">Contact Inspire Hospitality</p>
+          <h1 class="subhero__title" id="contact-h">
+            Begin a <em>conversation.</em>
+          </h1>
+          <p class="subhero__lede">
+            We are open to conversations with aligned capital partners, owners
+            and operators. Tell us a little about what you have in mind &mdash;
+            discretion assured.
+          </p>
+        </div>
+        <div class="subhero__hairline" aria-hidden="true"></div>
+      </section>
+
+      <!-- ============ CONTACT FORM ============ -->
+      <section class="section section--dark" aria-labelledby="form-h">
+        <div class="bloom bloom--tr bloom--soft" aria-hidden="true"></div>
+        <div class="container">
+          <div class="contact-layout">
+            <div>
+              <header class="section-head" style="margin-bottom: clamp(32px, 4vw, 48px);">
+                <p class="section-mark section-mark--light">I &mdash; Inquiries</p>
+                <h2 class="display display--sm" id="form-h">
+                  Tell us <em>what you&rsquo;re building.</em>
+                </h2>
+              </header>
+
+              <form class="contact-form" id="contact-form" novalidate>
+                <div class="field--row">
+                  <div class="field">
+                    <label for="cf-name">Name</label>
+                    <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Your full name" required />
+                  </div>
+                  <div class="field">
+                    <label for="cf-org">Organisation</label>
+                    <input type="text" id="cf-org" name="organisation" autocomplete="organization" placeholder="Company or fund" />
+                  </div>
+                </div>
+
+                <div class="field--row">
+                  <div class="field">
+                    <label for="cf-email">Email</label>
+                    <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="you@company.com" required />
+                  </div>
+                  <div class="field">
+                    <label for="cf-type">Nature of Inquiry</label>
+                    <select id="cf-type" name="type">
+                      <option>Investment &amp; Partnership</option>
+                      <option>Operating Partnership</option>
+                      <option>Brand &amp; Concept Creation</option>
+                      <option>Education &amp; Training</option>
+                      <option>Press &amp; Media</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="cf-message">Message</label>
+                  <textarea id="cf-message" name="message" placeholder="A few lines on the place, the partnership or the question you have in mind." required></textarea>
+                </div>
+
+                <div class="contact-form__actions">
+                  <button class="btn btn--primary" type="submit">
+                    <span>Send Inquiry</span>
+                    <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+                  </button>
+                  <span class="form-note">We reply to every serious inquiry, usually within two business days.</span>
+                </div>
+                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <aside class="contact-aside">
+              <div class="contact-block">
+                <p class="contact-block__label">Direct</p>
+                <a href="mailto:hello@inspirehospitality.com">hello@inspirehospitality.com</a>
+                <p class="contact-block__sub">Discreet correspondence welcomed.</p>
+              </div>
+              <div class="contact-block">
+                <p class="contact-block__label">For Investors</p>
+                <p>We share materials privately with aligned capital partners on request.</p>
+              </div>
+              <div class="contact-block">
+                <p class="contact-block__label">Where We Operate</p>
+                <p>China &middot; Switzerland<br />United States &middot; Dubai</p>
+                <p class="contact-block__sub">A multilingual team, operating across cultures and continents.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CLOSING CONSULTATION BAND ============ -->
+      <section class="section section--raised section--edge" aria-labelledby="consult-h">
+        <div class="platform__grain" aria-hidden="true"></div>
+        <div class="container">
+          <div class="story-grid" data-reveal>
+            <div class="story__media media-frame">
+              <img src="assets/img/about/195acda952c3cd20348a50e77873c89.jpg" alt="An Inspire Hospitality consultation session in progress" loading="lazy" />
+            </div>
+            <div class="story__body">
+              <p class="story__eyebrow">How We Work</p>
+              <h3 class="story__title">A considered conversation, <em>not a pitch.</em></h3>
+              <p class="lede">
+                Every engagement starts the same way &mdash; understanding the
+                place, the people and the financial logic before anything else.
+                We listen first, then bring two decades of operating experience
+                to bear.
+              </p>
+              <p class="lede">
+                Whether you are an owner seeking a partner, an investor exploring
+                the sector, or an institution building an education program, we
+                would be glad to talk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__top-rule" aria-hidden="true"></div>
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <img class="footer__logo" src="assets/img/brand/logo-02.png" alt="Inspire Hospitality" />
+          <p class="footer__tagline">To inspire hospitality in others.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer platform">
+          <h4>Platform</h4>
+          <a href="index.html#platform">What We Do</a>
+          <a href="index.html#track-record">Track Record</a>
+          <a href="portfolio.html">Portfolio</a>
+        </nav>
+        <nav class="footer__nav" aria-label="Footer company">
+          <h4>Company</h4>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="index.html#values">Principles</a>
+          <a href="contact.html">Inquiries</a>
+        </nav>
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <a href="mailto:hello@inspirehospitality.com">hello@inspirehospitality.com</a>
+          <p class="footer__contact-sub">Discreet correspondence welcomed.</p>
+        </div>
+      </div>
+      <div class="footer__base container">
+        <p>&copy; <span id="year"></span> Inspire Hospitality. All rights reserved.</p>
+        <p class="footer__legal"><a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+  </body>
+</html>

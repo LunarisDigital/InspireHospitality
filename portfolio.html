@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio &mdash; Inspire Hospitality</title>
+    <meta
+      name="description"
+      content="A portfolio of places shaped by Inspire Hospitality — cultural museum-hotels, boutique wellness-led stays, and the forums that bring the industry together."
+    />
+    <link rel="icon" type="image/avif" href="assets/img/brand/Logo.avif" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/pages.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="index.html" aria-label="Inspire Hospitality, home">
+          <img class="nav__logo" src="assets/img/brand/logo-02.png" alt="Inspire Hospitality" />
+        </a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="portfolio.html" aria-current="page">Portfolio</a>
+          <a class="nav__cta" href="contact.html">Contact Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============ SUBHERO ============ -->
+      <section class="subhero" aria-labelledby="folio-h">
+        <div class="subhero__media" aria-hidden="true">
+          <img src="assets/img/gallery/projects/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200905153336.jpg" alt="" />
+        </div>
+        <div class="subhero__scrim" aria-hidden="true"></div>
+        <div class="subhero__grain" aria-hidden="true"></div>
+        <div class="container subhero__content">
+          <p class="subhero__eyebrow">Portfolio</p>
+          <h1 class="subhero__title" id="folio-h">
+            Places we have <em>shaped.</em>
+          </h1>
+          <p class="subhero__lede">
+            Cultural museum-hotels, boutique wellness-led stays and the forums
+            that bring the industry together &mdash; each project begins with
+            its place, its heritage and the guest who will one day arrive.
+          </p>
+        </div>
+        <div class="subhero__hairline" aria-hidden="true"></div>
+      </section>
+
+      <!-- ============ INTRO ============ -->
+      <section class="section section--cream section--edge" aria-labelledby="intro-h">
+        <div class="bloom bloom--tl" aria-hidden="true"></div>
+        <div class="container container--narrow prose-narrow">
+          <p class="section-mark">Selected Work</p>
+          <h2 class="display display--sm" id="intro-h">
+            A portfolio built on <em>operational depth.</em>
+          </h2>
+          <p class="lede">
+            Two decades of opening and running hotels across six countries
+            inform every place in the portfolio &mdash; from heritage
+            museum-hotels to private garden suites. Select a category, or open
+            any image to view it in full.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ GALLERY ============ -->
+      <section class="section section--dark section--edge" aria-labelledby="gallery-h">
+        <div class="bloom bloom--br bloom--soft" aria-hidden="true"></div>
+        <div class="container">
+          <header class="section-head section-head--center">
+            <p class="section-mark section-mark--light">The Gallery</p>
+            <h2 class="display display--sm" id="gallery-h">
+              Heritage, craft <em>&amp; place.</em>
+            </h2>
+          </header>
+
+          <div class="folio-filter" role="group" aria-label="Filter portfolio by category">
+            <button class="folio-filter__btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="folio-filter__btn" type="button" data-filter="museum" aria-pressed="false">Museum-Hotels</button>
+            <button class="folio-filter__btn" type="button" data-filter="stays" aria-pressed="false">Boutique Stays</button>
+            <button class="folio-filter__btn" type="button" data-filter="forum" aria-pressed="false">Forums &amp; Education</button>
+          </div>
+
+          <div class="folio-grid" id="folio-grid">
+            <!-- Avantgarde — Porsche Carrera Cup Asia (real project; opens a gallery) -->
+            <button class="folio-item" data-project="avantgarde" data-cat="porsche" data-title="Avantgarde — Porsche Carrera Cup Asia" aria-label="Open the Avantgarde, Porsche Carrera Cup Asia gallery">
+              <img src="assets/img/gallery/events/PCCA%203.jpg" alt="Guests at a red-lit evening reception beside a Porsche 911 race car" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Hotel Operations &middot; Ningbo, China</p>
+                <h3 class="folio-item__title">Avantgarde &mdash; Porsche Carrera Cup Asia</h3>
+              </div>
+            </button>
+
+            <!-- Six Arts Culture Park (real project; opens a gallery) -->
+            <button class="folio-item" data-project="sixarts" data-cat="museum" data-title="Six Arts Culture Park" aria-label="Open the Six Arts Culture Park gallery">
+              <img src="assets/img/home/museum.jpg" alt="The Six Arts Museum facade with colourful panels and a traditional pavilion gate" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Property Management &middot; Suzhou, China</p>
+                <h3 class="folio-item__title">Six Arts Culture Park</h3>
+              </div>
+            </button>
+
+            <!-- Ardor Gardens by Lendlease (real project; opens a gallery) -->
+            <button class="folio-item" data-project="ardor" data-cat="resort" data-title="Ardor Gardens by Lendlease" aria-label="Open the Ardor Gardens by Lendlease gallery">
+              <img src="assets/img/gallery/projects/Ardor%20Gardens%20Thumbail%20Image.jpg" alt="Architectural rendering of the Ardor Gardens senior living resort with landscaped gardens and a lily pond" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Pre-Opening &middot; Qingpu, Shanghai</p>
+                <h3 class="folio-item__title">Ardor Gardens by Lendlease</h3>
+              </div>
+            </button>
+
+            <!-- ================================================================
+                 PLACEHOLDER CONTENT — TO BE REMOVED
+                 Every .folio-item below is placeholder portfolio work, tagged
+                 with data-placeholder="remove". As real projects/images come
+                 in, replace these tiles and drop the data-placeholder attr.
+                 To find all remaining placeholders: grep data-placeholder="remove"
+                 ================================================================ -->
+            <!-- Museum-Hotels -->
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Museum-Hotel" data-title="Six Arts Museum" aria-label="View Six Arts Museum">
+              <img src="assets/img/home/museum.jpg" alt="The colourful Six Arts Museum facade with a traditional pavilion gate" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Museum-Hotel</p><h3 class="folio-item__title">Six Arts Museum</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Heritage Interior" data-title="The Ornamental Pavilion" aria-label="View The Ornamental Pavilion">
+              <img src="assets/img/gallery/projects/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200905153336.jpg" alt="Ornate gilded and lacquered traditional Chinese pavilion interior" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Heritage Interior</p><h3 class="folio-item__title">The Ornamental Pavilion</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Property" data-title="Heritage Courtyard" aria-label="View Heritage Courtyard">
+              <img src="assets/img/gallery/projects/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200905153432.jpg" alt="Stone-brick heritage courtyard buildings with traditional rooflines under a blue sky" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Property</p><h3 class="folio-item__title">Heritage Courtyard</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Interior" data-title="The Grand Stair" aria-label="View The Grand Stair">
+              <img src="assets/img/gallery/projects/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200903083658.png" alt="A dramatic museum-hotel lobby and staircase with murals and a glass installation" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Interior</p><h3 class="folio-item__title">The Grand Stair</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Exhibition" data-title="Lacquer Painting Gallery" aria-label="View Lacquer Painting Gallery">
+              <img src="assets/img/home/%E4%B8%89%E6%A5%BC-%E6%BC%86%E7%94%BB%E9%A6%86.jpg" alt="Gallery wall of framed lacquer paintings in a museum interior" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Exhibition</p><h3 class="folio-item__title">Lacquer Painting Gallery</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Exhibition" data-title="The Plaque Hall" aria-label="View The Plaque Hall">
+              <img src="assets/img/gallery/projects/%E4%B8%89%E6%A5%BC-%E5%8C%BE%E9%A2%9D%E9%A6%86.jpg" alt="Exhibition hall displaying traditional carved plaques" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Exhibition</p><h3 class="folio-item__title">The Plaque Hall</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Exhibition" data-title="The Bracket Hall" aria-label="View The Bracket Hall">
+              <img src="assets/img/gallery/projects/%E4%B8%89%E6%A5%BC-%E9%9B%80%E6%9B%BF%E9%A6%86.jpg" alt="Museum hall displaying traditional timber bracket sets" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Exhibition</p><h3 class="folio-item__title">The Bracket Hall</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="museum" data-tag="Exhibition" data-title="The Lacquer Chest Hall" aria-label="View The Lacquer Chest Hall">
+              <img src="assets/img/gallery/projects/%E4%B8%89%E6%A5%BC-%E6%BC%86%E7%94%BB%E7%AE%B1%E9%A6%86.jpg" alt="Museum hall displaying decorated lacquer chests" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Exhibition</p><h3 class="folio-item__title">The Lacquer Chest Hall</h3></div>
+            </button>
+
+            <!-- Boutique Stays -->
+            <button class="folio-item" data-placeholder="remove" data-cat="stays" data-tag="Boutique Stay" data-title="Garden Courtyard Suite" aria-label="View Garden Courtyard Suite">
+              <img src="assets/img/home/%E6%82%A6%E7%9B%AE%E7%A7%81%E5%AE%B6%E7%BB%8F%E5%85%B8%E8%8A%B1%E5%9B%AD%E6%88%BF%20(5).JPG" alt="Heritage courtyard guest room with a carved timber door and grey-brick walls" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Boutique Stay</p><h3 class="folio-item__title">Garden Courtyard Suite</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="stays" data-tag="Boutique Stay" data-title="Private Garden Villa" aria-label="View Private Garden Villa">
+              <img src="assets/img/gallery/rooms/%E6%82%A6%E8%89%BA%E8%87%B3%E5%B0%8A%E7%A7%81%E5%AE%B6%E8%8A%B1%E5%9B%AD%E5%A5%97%E6%88%BF%20(5).JPG" alt="A luxury suite with a green velvet sofa, chandelier and carved timber, opening to a garden" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Boutique Stay</p><h3 class="folio-item__title">Private Garden Villa</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="stays" data-tag="Boutique Stay" data-title="Duplex Gathering Suite" aria-label="View Duplex Gathering Suite">
+              <img src="assets/img/gallery/rooms/%E6%82%A6%E5%B0%94%E5%A4%8D%E5%BC%8F%E6%AC%A2%E8%81%9A%E6%88%BF%20(1).jpg" alt="A duplex suite interior with a carved-wood balustrade, mural and stone walls" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Boutique Stay</p><h3 class="folio-item__title">Duplex Gathering Suite</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="stays" data-tag="Concept" data-title="Wellness Resort" aria-label="View Wellness Resort concept">
+              <img src="assets/img/home/banner/image5.jpg" alt="A wellness-led resort set among gardens and water" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Concept</p><h3 class="folio-item__title">Wellness Resort</h3></div>
+            </button>
+
+            <!-- Forums & Education -->
+            <button class="folio-item" data-placeholder="remove" data-cat="forum" data-tag="Forum" data-title="Women in Hospitality Forum" aria-label="View Women in Hospitality Forum">
+              <img src="assets/img/about/INS001182.jpg" alt="The Inspire Women in Hospitality Forum with a panel on a lavender-decorated stage" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Forum</p><h3 class="folio-item__title">Women in Hospitality Forum</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="forum" data-tag="Forum" data-title="Story Sharing" aria-label="View Story Sharing session">
+              <img src="assets/img/gallery/events/YZM7918_w6785.JPG" alt="A speaker presenting Story Sharing at the Ignite & Inspire Hospitality Forum" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Forum</p><h3 class="folio-item__title">Story Sharing</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="forum" data-tag="Forum" data-title="Keynote Session" aria-label="View Keynote Session">
+              <img src="assets/img/gallery/events/YZM8161_w6773.JPG" alt="A keynote speaker addressing the forum audience" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Forum</p><h3 class="folio-item__title">Keynote Session</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="forum" data-tag="People" data-title="The Team" aria-label="View The Team">
+              <img src="assets/img/about/t1.jpg" alt="The Inspire Hospitality team gathered in a hotel lobby" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">People</p><h3 class="folio-item__title">The Team</h3></div>
+            </button>
+            <button class="folio-item" data-placeholder="remove" data-cat="forum" data-tag="Forum" data-title="Leadership Panel" aria-label="View Leadership Panel">
+              <img src="assets/img/home/banner/image1.jpg" alt="An Inspire Hospitality leadership panel at an industry forum" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap"><p class="folio-item__tag">Forum</p><h3 class="folio-item__title">Leadership Panel</h3></div>
+            </button>
+          </div>
+
+          <p class="folio-empty">No projects in this category yet.</p>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="cta" id="cta" aria-labelledby="cta-h">
+        <div class="cta__bloom cta__bloom--lavender" aria-hidden="true"></div>
+        <div class="cta__bloom cta__bloom--rose" aria-hidden="true"></div>
+        <div class="cta__grain" aria-hidden="true"></div>
+
+        <div class="container container--narrow cta__inner">
+          <p class="section-mark section-mark--light">Inquiries</p>
+          <h2 class="display display--lg cta__title" id="cta-h">
+            A place in mind?<br /><em>Let&rsquo;s talk.</em>
+          </h2>
+          <p class="lede lede--light">
+            We are open to conversations with aligned capital partners, owners
+            and operators. Discretion assured.
+          </p>
+          <div class="cta__actions">
+            <a class="btn btn--primary btn--on-dark" href="contact.html">
+              <span>Begin a Conversation</span>
+              <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="cta__meta">
+            <span>hello@inspirehospitality.com</span>
+            <span class="cta__meta-rule"></span>
+            <span>Discreet correspondence welcomed</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ PROJECT GALLERY ============ -->
+    <div class="project" id="project" role="dialog" aria-modal="true" aria-labelledby="project-title" aria-hidden="true">
+      <div class="project__scrim" data-project-close aria-hidden="true"></div>
+      <button class="project__close" type="button" data-project-close aria-label="Close project">&times;</button>
+      <div class="project__panel" role="document">
+        <header class="project__head">
+          <p class="project__eyebrow" id="project-eyebrow"></p>
+          <h2 class="project__title" id="project-title"></h2>
+          <p class="project__body" id="project-body"></p>
+        </header>
+        <div class="project__grid" id="project-grid"></div>
+      </div>
+    </div>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+      <button class="lightbox__close" type="button" data-lb-close aria-label="Close viewer">&times;</button>
+      <figure class="lightbox__figure">
+        <button class="lightbox__btn lightbox__btn--prev" type="button" aria-label="Previous image">
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 1L3 7L9 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <img class="lightbox__img" id="lightbox-img" src="" alt="" />
+        <button class="lightbox__btn lightbox__btn--next" type="button" aria-label="Next image">
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 1L11 7L5 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <figcaption class="lightbox__cap" id="lightbox-cap"></figcaption>
+      </figure>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__top-rule" aria-hidden="true"></div>
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <img class="footer__logo" src="assets/img/brand/logo-02.png" alt="Inspire Hospitality" />
+          <p class="footer__tagline">To inspire hospitality in others.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer platform">
+          <h4>Platform</h4>
+          <a href="index.html#platform">What We Do</a>
+          <a href="index.html#track-record">Track Record</a>
+          <a href="portfolio.html">Portfolio</a>
+        </nav>
+        <nav class="footer__nav" aria-label="Footer company">
+          <h4>Company</h4>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="index.html#values">Principles</a>
+          <a href="contact.html">Inquiries</a>
+        </nav>
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <a href="mailto:hello@inspirehospitality.com">hello@inspirehospitality.com</a>
+          <p class="footer__contact-sub">Discreet correspondence welcomed.</p>
+        </div>
+      </div>
+      <div class="footer__base container">
+        <p>&copy; <span id="year"></span> Inspire Hospitality. All rights reserved.</p>
+        <p class="footer__legal"><a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+  </body>
+</html>
