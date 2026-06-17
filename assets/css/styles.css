@@ -859,6 +859,113 @@ em { font-style: italic; }
 }
 
 /* =============================================================
+   SHEEN — reusable "metallic flash"
+   A light streak that enters off-screen, sweeps across a section
+   on the diagonal, exits the far side, then pauses and repeats.
+   Same idea as the intro splash, distilled into a drop-in element.
+
+   Usage: place <div class="sheen ..." aria-hidden="true"></div>
+   inside any position:relative section (alongside the blooms).
+   Mix and match modifiers for variety:
+     direction : (default L→R)  .sheen--rev (R→L)
+     angle     : .sheen--steep  .sheen--lean
+     width     : .sheen--thin   .sheen--wide
+     tint      : .sheen--gold   .sheen--lilac  .sheen--rose
+     cadence   : .sheen--slow   .sheen--fast
+     surface   : .sheen--ink    (for light / cream sections)
+   Stagger multiple sheens with style="--sheen-delay: 2s".
+   ============================================================= */
+.sheen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22vmax;                 /* band thickness */
+  height: 280%;                  /* tall enough to span when tilted */
+  pointer-events: none;
+  z-index: 0;                    /* behind content, like .bloom */
+  opacity: 0;
+  filter: blur(6px);
+  mix-blend-mode: screen;        /* lightens — reads on dark surfaces */
+  will-change: transform, opacity;
+  /* glint colours are theme-able per tint modifier */
+  --sheen-core:  rgba(255, 255, 255, 0.30);  /* main bright glint */
+  --sheen-edge:  rgba(209, 169, 242, 0.06);
+  --sheen-trail: rgba(255, 255, 255, 0.10);  /* trailing softer glint */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 32%,
+    rgba(255, 255, 255, 0.05) 42%,
+    var(--sheen-core) 50%,
+    var(--sheen-edge) 58%,
+    var(--sheen-trail) 66%,
+    transparent 76%,
+    transparent 100%
+  );
+  animation: sheenSweep 9s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation-delay: var(--sheen-delay, 0s);
+}
+
+/* --- Direction --- */
+.sheen--rev { animation-name: sheenSweepRev; }
+
+/* --- Angle (default tilt is 18deg) --- */
+.sheen--steep { --sheen-angle: 8deg; }
+.sheen--lean  { --sheen-angle: 30deg; }
+
+/* --- Band width --- */
+.sheen--thin { width: 13vmax; }
+.sheen--wide { width: 34vmax; }
+
+/* --- Tints --- */
+.sheen--gold {
+  --sheen-core:  rgba(251, 232, 115, 0.26);
+  --sheen-edge:  rgba(242, 211, 157, 0.10);
+  --sheen-trail: rgba(246, 223, 192, 0.10);
+}
+.sheen--lilac {
+  --sheen-core:  rgba(209, 169, 242, 0.32);
+  --sheen-edge:  rgba(182, 143, 216, 0.10);
+  --sheen-trail: rgba(209, 169, 242, 0.10);
+}
+.sheen--rose {
+  --sheen-core:  rgba(229, 186, 196, 0.30);
+  --sheen-edge:  rgba(229, 186, 196, 0.10);
+  --sheen-trail: rgba(229, 186, 196, 0.10);
+}
+
+/* --- Cadence --- */
+.sheen--slow { animation-duration: 13s; }
+.sheen--fast { animation-duration: 6.5s; }
+
+/* --- For light / cream sections: darken (multiply) instead of lighten --- */
+.sheen--ink {
+  mix-blend-mode: multiply;
+  filter: blur(8px);
+  --sheen-core:  rgba(122, 84, 145, 0.14);
+  --sheen-edge:  rgba(122, 84, 145, 0.05);
+  --sheen-trail: rgba(122, 84, 145, 0.07);
+}
+
+/* L→R: enters from the left, crosses over the first ~half of the
+   cycle, then holds off-screen right until the loop restarts. */
+@keyframes sheenSweep {
+  0%   { transform: translate(-50%, -50%) rotate(var(--sheen-angle, 18deg)) translateX(-130vw); opacity: 0; }
+  5%   { opacity: 1; }
+  42%  { opacity: 1; }
+  48%  { transform: translate(-50%, -50%) rotate(var(--sheen-angle, 18deg)) translateX(130vw);  opacity: 0; }
+  100% { transform: translate(-50%, -50%) rotate(var(--sheen-angle, 18deg)) translateX(130vw);  opacity: 0; }
+}
+/* R→L: mirror of the above (negative tilt, reversed travel). */
+@keyframes sheenSweepRev {
+  0%   { transform: translate(-50%, -50%) rotate(calc(-1 * var(--sheen-angle, 18deg))) translateX(130vw);  opacity: 0; }
+  5%   { opacity: 1; }
+  42%  { opacity: 1; }
+  48%  { transform: translate(-50%, -50%) rotate(calc(-1 * var(--sheen-angle, 18deg))) translateX(-130vw); opacity: 0; }
+  100% { transform: translate(-50%, -50%) rotate(calc(-1 * var(--sheen-angle, 18deg))) translateX(-130vw); opacity: 0; }
+}
+
+/* =============================================================
    POSITIONING — light champagne spread
    ============================================================= */
 .positioning {
@@ -947,6 +1054,7 @@ em { font-style: italic; }
   padding: clamp(110px, 14vw, 170px) 0;
   background: var(--bg-deep);
   overflow: hidden;
+  isolation: isolate;
 }
 .track::before {
   content: "";
@@ -1182,12 +1290,18 @@ em { font-style: italic; }
 }
 
 /* =============================================================
-   PLATFORM (DARK) — capability columns with massive italic nums
+   PLATFORM (DARK) — interactive disciplines accordion
    ============================================================= */
 .platform {
   position: relative;
   padding: clamp(120px, 16vw, 200px) 0;
-  background: var(--bg-raised);
+  /* Deepens downward so it pours seamlessly into the deepest-dark CTA below
+     (the cream Principles section that used to sit between them is gone). */
+  background: linear-gradient(180deg,
+    var(--bg-raised) 0%,
+    var(--bg-mid) 45%,
+    var(--bg-deep) 78%,
+    var(--bg-deepest) 100%);
   color: var(--text-primary);
   overflow: hidden;
   isolation: isolate;
@@ -1240,82 +1354,163 @@ em { font-style: italic; }
 }
 .platform > .container { position: relative; z-index: 2; }
 
-.capabilities {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+/* ---- Disciplines: interactive accordion -------------------------------- */
+.disciplines {
   border-top: 1px solid var(--hairline);
-  border-left: 1px solid var(--hairline);
 }
-.capability {
+.discipline {
   position: relative;
-  padding: clamp(56px, 5.5vw, 88px) clamp(36px, 4vw, 56px) clamp(48px, 5vw, 72px);
-  border-right: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
   overflow: hidden;
-  transition: background 0.6s var(--ease-out);
 }
-.capability::before {
+/* gradient hairline that draws across the top of the open row */
+.discipline::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
+  top: -1px; left: 0;
   width: 0;
   height: 1px;
   background: var(--gradient-signature);
-  transition: width 0.8s var(--ease-out);
   box-shadow: 0 0 12px rgba(209, 169, 242, 0.5);
+  transition: width 0.8s var(--ease-out);
+  z-index: 2;
 }
-.capability:hover { background: rgba(209, 169, 242, 0.05); }
-.capability:hover::before { width: 100%; }
+.discipline.is-open::before { width: 100%; }
 
-.capability__num {
-  position: absolute;
-  top: -22px;
-  right: -8px;
+.discipline__heading { margin: 0; }
+.discipline__trigger {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+  width: 100%;
+  padding: clamp(30px, 3.4vw, 52px) clamp(8px, 2vw, 28px);
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.5s var(--ease-out);
+}
+.discipline__trigger:hover { background: rgba(209, 169, 242, 0.04); }
+.discipline.is-open .discipline__trigger { background: rgba(209, 169, 242, 0.05); }
+.discipline__trigger:focus-visible {
+  outline: none;
+  background: rgba(209, 169, 242, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(209, 169, 242, 0.45);
+}
+
+.discipline__index {
+  flex: none;
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(180px, 18vw, 280px);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(40px, 5vw, 76px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
   background: var(--gradient-signature);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  opacity: 0.22;
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity 0.6s var(--ease-out), transform 0.8s var(--ease-out);
+  opacity: 0.4;
+  transition: opacity 0.6s var(--ease-out);
 }
-.capability:hover .capability__num {
-  opacity: 0.42;
-  transform: translate(-4px, 4px);
-}
-.capability__body { position: relative; z-index: 1; max-width: 42ch; }
-.capability__index {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 24px;
-}
-.capability__title {
+.discipline__trigger:hover .discipline__index,
+.discipline.is-open .discipline__index { opacity: 0.9; }
+
+.discipline__name {
+  flex: 1 1 auto;
+  min-width: 0;
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(26px, 2.2vw, 36px);
-  line-height: 1.15;
+  font-size: clamp(24px, 2.6vw, 40px);
+  line-height: 1.1;
   letter-spacing: -0.012em;
-  color: var(--text-primary);
-  margin: 0 0 22px;
+  color: var(--text-secondary);
+  transition: color 0.5s var(--ease-out);
 }
-.capability__copy {
+.discipline__trigger:hover .discipline__name,
+.discipline.is-open .discipline__name { color: var(--text-primary); }
+
+/* circular +/- indicator */
+.discipline__icon {
+  flex: none;
+  position: relative;
+  width: clamp(30px, 3vw, 40px);
+  height: clamp(30px, 3vw, 40px);
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  transition: border-color 0.5s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.discipline__icon::before,
+.discipline__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 12px; height: 1px;
+  background: var(--text-primary);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s var(--ease-out);
+}
+.discipline__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.discipline:hover .discipline__icon { border-color: rgba(209, 169, 242, 0.4); }
+.discipline.is-open .discipline__icon {
+  border-color: rgba(209, 169, 242, 0.6);
+  transform: rotate(180deg);
+}
+.discipline.is-open .discipline__icon::after { opacity: 0; }
+
+/* collapsible panel — animated via the grid-rows 0fr/1fr technique */
+.discipline__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s var(--ease-out);
+}
+.discipline.is-open .discipline__panel { grid-template-rows: 1fr; }
+.discipline__panel-in {
+  overflow: hidden;
+  min-height: 0;
+}
+.discipline__panel-content {
+  max-width: 64ch;
+  padding: 4px clamp(8px, 2vw, 28px) clamp(40px, 4.2vw, 60px)
+           clamp(64px, 8vw, 132px);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s var(--ease-out) 0.12s,
+              transform 0.6s var(--ease-out) 0.12s;
+}
+.discipline.is-open .discipline__panel-content {
+  opacity: 1;
+  transform: none;
+}
+.discipline__lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(19px, 1.6vw, 25px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--lavender);
+  margin: 0 0 16px;
+}
+.discipline__copy {
   font-size: 15.5px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--text-secondary);
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discipline__panel,
+  .discipline__panel-content,
+  .discipline::before,
+  .discipline__icon,
+  .discipline__index,
+  .discipline__name { transition-duration: 0.001ms !important; }
 }
 
 /* =============================================================
@@ -1582,6 +1777,7 @@ em { font-style: italic; }
     linear-gradient(180deg, var(--cream) 0%, var(--cream-blush) 50%, var(--cream) 100%);
   color: var(--ink);
   overflow: hidden;
+  isolation: isolate;
 }
 .values::before,
 .values::after {
@@ -1950,12 +2146,10 @@ em { font-style: italic; }
 }
 @media (max-width: 900px) {
   .logos { grid-template-columns: repeat(4, 1fr); }
-  .capabilities { grid-template-columns: 1fr; }
-  .capability__num {
-    font-size: clamp(120px, 17vw, 170px);
-    top: -10px;
-    right: 0;
-  }
+  .discipline__trigger { gap: clamp(16px, 4vw, 28px); }
+  .discipline__index { font-size: clamp(36px, 9vw, 56px); }
+  .discipline__name { font-size: clamp(22px, 5.5vw, 30px); }
+  .discipline__panel-content { padding-left: clamp(24px, 6vw, 48px); }
   .footer__inner { grid-template-columns: 1fr 1fr; }
 }
 
@@ -2006,12 +2200,11 @@ em { font-style: italic; }
   .stats { grid-template-columns: 1fr; }
   .logos { grid-template-columns: repeat(2, 1fr); }
   .value-grid { grid-template-columns: 1fr; }
-  .capability__num {
-    font-size: clamp(80px, 20vw, 120px);
-    top: -6px;
-    right: 4px;
-    opacity: 0.20;
-  }
+  .discipline__trigger { gap: 16px; padding-left: 0; padding-right: 0; }
+  .discipline__index { font-size: clamp(30px, 9vw, 44px); }
+  .discipline__name { font-size: clamp(20px, 6.4vw, 26px); }
+  .discipline__icon { width: 28px; height: 28px; }
+  .discipline__panel-content { padding-left: clamp(14px, 5vw, 28px); padding-right: 0; }
 
   .footer__inner {
     grid-template-columns: 1fr;

@@ -15,10 +15,10 @@
         }
       })();
     </script>
-    <title>Inspire Hospitality &mdash; A hospitality investment and development platform</title>
+    <title>Inspire Hospitality &middot; A hospitality investment and development platform</title>
     <meta
       name="description"
-      content="Inspire Hospitality is a hospitality investment and development platform creating boutique, wellness-led resorts, built on two decades of operational and brand expertise."
+      content="Inspire Hospitality is a hospitality investment and development platform creating boutique luxury resorts, built on four decades of global operations and brand expertise."
     />
     <link rel="icon" type="image/avif" href="assets/img/brand/Logo.avif" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,9 +41,9 @@
       <div class="intro__grain" aria-hidden="true"></div>
 
       <div class="intro__inner">
-        <p class="intro__eyebrow">Hospitality Investment &amp; Development</p>
+        <p class="intro__eyebrow">Boutique Hospitality Development Group</p>
         <img class="intro__logo" src="assets/img/brand/logo-02.png" alt="Inspire Hospitality" />
-        <p class="intro__tagline">To inspire hospitality <em>in others.</em></p>
+        <p class="intro__tagline">Inspire hospitality <em>in others.</em></p>
       </div>
 
       <button class="intro__cue" type="button" id="intro-enter" aria-label="Enter the site">
@@ -79,12 +79,12 @@
         <div class="subhero__grain" aria-hidden="true"></div>
 
         <div class="container subhero__content">
-          <p class="subhero__eyebrow">Hospitality Investment &amp; Development</p>
-          <h1 class="subhero__title">To inspire hospitality <em>in others.</em></h1>
+          <p class="subhero__eyebrow">Boutique Hospitality Development Group</p>
+          <h1 class="subhero__title">Inspire hospitality <em>in others.</em></h1>
           <p class="subhero__lede">
             A hospitality investment and development platform creating
-            boutique, wellness&ndash;led resorts &mdash; built on two decades of
-            operational and brand expertise.
+            boutique luxury resorts, built on four decades of global
+            operations and brand expertise.
           </p>
           <div class="subhero__actions">
             <a class="btn btn--primary" href="portfolio.html">
@@ -102,34 +102,192 @@
         <div class="subhero__hairline" aria-hidden="true"></div>
       </section>
 
-      <!-- ============ POSITIONING (image + copy) ============ -->
-      <section class="section section--cream section--edge" id="positioning" aria-labelledby="pos-h">
+      <!-- ============ WHO WE ARE - interactive story timeline ============ -->
+      <section class="section section--cream section--edge journey" id="positioning" aria-labelledby="pos-h">
         <div class="bloom bloom--tl" aria-hidden="true"></div>
+        <div class="bloom bloom--br bloom--soft" aria-hidden="true"></div>
         <div class="container">
-          <div class="story-grid" data-reveal>
-            <div class="story__media media-frame">
-              <img src="assets/img/about/t1.jpg" alt="The Inspire Hospitality team gathered in a hotel lobby" loading="lazy" />
-            </div>
-            <div class="story__body">
-              <p class="section-mark">I &mdash; Who We Are</p>
-              <h2 class="display display--sm" id="pos-h">
-                <em>Since 2018</em>, we have worked alongside owners and
-                investors to elevate guest experience and performance.
-              </h2>
-              <p class="lede">
-                Today that experience is the foundation for something more
-                enduring &mdash; Inspire Hospitality is evolving from an
-                advisory practice into an owner&ndash;operator: developing,
-                acquiring and stewarding boutique resorts.
-              </p>
-              <p class="lede">
-                Great places begin with great people. The platform we are
-                building now is the natural extension of that conviction.
-              </p>
-              <a class="link-arrow" href="portfolio.html">
-                <span>See the Portfolio</span>
-                <span class="btn__arrow" aria-hidden="true">&rarr;</span>
-              </a>
+          <header class="journey__head" data-reveal>
+            <p class="section-mark">I &middot; Who We Are</p>
+            <h2 class="display display--sm" id="pos-h">
+              From advisory to ownership:<br />
+              <em>three chapters, one mission.</em>
+            </h2>
+          </header>
+
+          <div class="journey__stage" id="journey" data-journey data-interval="7000" data-reveal>
+            <!-- Clickable timeline rail -->
+            <ol class="journey__rail" role="tablist" aria-label="The Inspire Hospitality story">
+              <li class="journey__rail-item">
+                <button
+                  class="journey__node is-active"
+                  type="button"
+                  role="tab"
+                  id="journey-tab-0"
+                  aria-selected="true"
+                  aria-controls="journey-panel-0"
+                  data-step="0"
+                >
+                  <span class="journey__node-dot" aria-hidden="true"></span>
+                  <span class="journey__node-year">The Platform</span>
+                  <span class="journey__node-label">Who we are</span>
+                </button>
+              </li>
+              <li class="journey__rail-item">
+                <button
+                  class="journey__node"
+                  type="button"
+                  role="tab"
+                  id="journey-tab-1"
+                  aria-selected="false"
+                  aria-controls="journey-panel-1"
+                  tabindex="-1"
+                  data-step="1"
+                >
+                  <span class="journey__node-dot" aria-hidden="true"></span>
+                  <span class="journey__node-year">2018</span>
+                  <span class="journey__node-label">The founding</span>
+                </button>
+              </li>
+              <li class="journey__rail-item">
+                <button
+                  class="journey__node"
+                  type="button"
+                  role="tab"
+                  id="journey-tab-2"
+                  aria-selected="false"
+                  aria-controls="journey-panel-2"
+                  tabindex="-1"
+                  data-step="2"
+                >
+                  <span class="journey__node-dot" aria-hidden="true"></span>
+                  <span class="journey__node-year">Today</span>
+                  <span class="journey__node-label">The next chapter</span>
+                </button>
+              </li>
+              <span class="journey__rail-track" aria-hidden="true">
+                <span class="journey__rail-fill"></span>
+              </span>
+            </ol>
+
+            <div class="journey__body">
+              <!-- Media: cross-fading frames -->
+              <div class="journey__media media-frame">
+                <figure class="journey__slide is-active" data-slide="0">
+                  <img
+                    src="assets/img/gallery/rooms/%E6%82%A6%E8%89%BA%E8%87%B3%E5%B0%8A%E7%A7%81%E5%AE%B6%E8%8A%B1%E5%9B%AD%E5%A5%97%E6%88%BF%20(5).JPG"
+                    alt="A boutique luxury garden suite with a green velvet sofa, chandelier and carved timber bed"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure class="journey__slide" data-slide="1">
+                  <img
+                    src="assets/img/about/INS001182.jpg"
+                    alt="The Inspire Women in Hospitality Forum, a panel on stage before a full audience"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure class="journey__slide" data-slide="2">
+                  <img
+                    src="assets/img/home/banner/image5.jpg"
+                    alt="A landscaped boutique resort development beside a willow-lined waterway"
+                    loading="lazy"
+                  />
+                </figure>
+                <span class="journey__count" aria-hidden="true">
+                  <b class="journey__count-current">01</b>
+                  <span class="journey__count-sep">/</span>
+                  <span class="journey__count-total">03</span>
+                </span>
+              </div>
+
+              <!-- Text column: stacked panels + controls -->
+              <div class="journey__col">
+                <div class="journey__panels">
+                  <article
+                    class="journey__panel is-active"
+                    id="journey-panel-0"
+                    role="tabpanel"
+                    aria-labelledby="journey-tab-0"
+                    tabindex="0"
+                  >
+                    <p class="journey__kicker"><span>Chapter 01</span> The Platform</p>
+                    <h3 class="journey__title">
+                      A hospitality investment and development platform creating
+                      <em>boutique luxury resorts.</em>
+                    </h3>
+                    <p class="journey__copy">
+                      Built on four decades of global operations and brand
+                      expertise: the people, the standards and the
+                      relationships behind the world&rsquo;s most demanding
+                      hospitality.
+                    </p>
+                  </article>
+
+                  <article
+                    class="journey__panel"
+                    id="journey-panel-1"
+                    role="tabpanel"
+                    aria-labelledby="journey-tab-1"
+                    tabindex="0"
+                  >
+                    <p class="journey__kicker"><span>Chapter 02</span> The Founding</p>
+                    <h3 class="journey__title">
+                      <em>In 2018</em>, founded with a single mission: to
+                      inspire hospitality in others.
+                    </h3>
+                    <p class="journey__copy">
+                      Through consultancy, culture&ndash;building, pre&ndash;opening
+                      services, hotel management and team training across some of
+                      the world&rsquo;s most demanding luxury properties, we have
+                      worked alongside companies, owners and investors to elevate
+                      guest experience and financial performance.
+                    </p>
+                  </article>
+
+                  <article
+                    class="journey__panel"
+                    id="journey-panel-2"
+                    role="tabpanel"
+                    aria-labelledby="journey-tab-2"
+                    tabindex="0"
+                  >
+                    <p class="journey__kicker"><span>Chapter 03</span> The Next Chapter</p>
+                    <h3 class="journey__title">
+                      That experience is the foundation for
+                      <em>the next chapter.</em>
+                    </h3>
+                    <p class="journey__copy">
+                      Inspire Hospitality is a platform that develops, acquires and
+                      stewards boutique luxury resorts, carrying everything
+                      we have learned into properties of our own.
+                    </p>
+                  </article>
+                </div>
+
+                <div class="journey__controls">
+                  <div class="journey__arrows">
+                    <button
+                      class="journey__arrow journey__arrow--prev"
+                      type="button"
+                      aria-label="Previous chapter"
+                    >
+                      <span aria-hidden="true">&larr;</span>
+                    </button>
+                    <button
+                      class="journey__arrow journey__arrow--next"
+                      type="button"
+                      aria-label="Next chapter"
+                    >
+                      <span aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                  <a class="link-arrow" href="portfolio.html">
+                    <span>See the Portfolio</span>
+                    <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -138,16 +296,17 @@
       <!-- ============ FEATURED WORK ============ -->
       <section class="section section--dark section--edge" id="work" aria-labelledby="work-h">
         <div class="bloom bloom--tr bloom--soft" aria-hidden="true"></div>
+        <div class="sheen sheen--lilac sheen--lean" aria-hidden="true"></div>
         <div class="container">
           <header class="section-head">
-            <p class="section-mark">II &mdash; Selected Work</p>
+            <p class="section-mark">II &middot; Selected Work</p>
             <h2 class="display display--sm" id="work-h">
               Places we have shaped,<br />
               <em>and the craft behind them.</em>
             </h2>
             <p class="section-head__lede">
               From cultural museum-hotels to wellness-led garden stays, each
-              project begins with its place &mdash; the landscape, the heritage
+              project begins with its place: the landscape, the heritage
               and the guest who will one day arrive.
             </p>
           </header>
@@ -231,11 +390,12 @@
           <img src="assets/img/gallery/events/YZM8161_w6773.JPG" alt="" />
           <div class="photo-bg__scrim"></div>
         </div>
+        <div class="sheen sheen--gold sheen--rev sheen--slow" aria-hidden="true" style="--sheen-delay: 3s"></div>
         <div class="container">
           <header class="section-head">
-            <p class="section-mark">III &mdash; Track Record</p>
+            <p class="section-mark">III &middot; Track Record</p>
             <h2 class="display display--sm" id="track-h">
-              Two decades of work,<br />
+              Four decades of work,<br />
               <em>in numbers.</em>
             </h2>
             <p class="section-head__lede">
@@ -264,7 +424,7 @@
             <li class="stat">
               <span class="stat__roman">IV</span>
               <p class="stat__figure"><span class="stat__num">10+</span><span class="stat__unit">initiatives</span></p>
-              <p class="stat__label">Hospitality education and cooperative relationships in China, Switzerland, the United States and Dubai.</p>
+              <p class="stat__label">Hospitality education and cooperative relationships in China, Switzerland, South America, the United States and Dubai.</p>
             </li>
             <li class="stat">
               <span class="stat__roman">V</span>
@@ -285,14 +445,14 @@
         <div class="bloom bloom--tr bloom--soft" aria-hidden="true"></div>
         <div class="container">
           <header class="section-head section-head--center">
-            <p class="section-mark">IV &mdash; Partners</p>
+            <p class="section-mark">IV &middot; Partners</p>
             <h2 class="display display--sm" id="clients-h">
-              Two decades of work, <em>across&hellip;</em>
+              Four decades of work, <em>across&hellip;</em>
             </h2>
           </header>
 
           <div class="marquee" aria-label="Partners, collaborators and hospitality-education institutions">
-            <!-- Row 1 — scrolls left -->
+            <!-- Row 1 - scrolls left -->
             <div class="marquee__row">
               <div class="marquee__track">
                 <span class="marquee__item"><img src="assets/img/partners/Glion.png" alt="Glion Institute of Higher Education" loading="lazy" /></span>
@@ -313,7 +473,7 @@
               </div>
             </div>
 
-            <!-- Row 2 — scrolls right -->
+            <!-- Row 2 - scrolls right -->
             <div class="marquee__row">
               <div class="marquee__track marquee__track--reverse">
                 <span class="marquee__item"><img src="assets/img/partners/ESCCA.jfif" alt="ESCCA" loading="lazy" /></span>
@@ -343,121 +503,106 @@
 
         <div class="container">
           <header class="section-head section-head--inverse">
-            <p class="section-mark section-mark--light">V &mdash; The Platform</p>
+            <p class="section-mark section-mark--light">V &middot; The Platform</p>
             <h2 class="display display--sm" id="platform-h">
               What we do.<br />
-              <em>Four disciplines, one practice.</em>
+              <em>Three disciplines, one practice.</em>
             </h2>
             <p class="section-head__lede section-head__lede--light">
-              Four interlocking capabilities, drawn from the same operational
-              DNA and now turned toward ownership.
+              Three interlocking capabilities, drawn from the same operational
+              DNA and now turned toward ownership. Select each to explore.
             </p>
           </header>
 
-          <div class="capabilities">
-            <article class="capability">
-              <span class="capability__num" aria-hidden="true">01</span>
-              <div class="capability__body">
-                <p class="capability__index">Capability I</p>
-                <h3 class="capability__title">Hotel Development<br />&amp; Ownership</h3>
-                <p class="capability__copy">
-                  We identify, structure and develop resort opportunities where
-                  the land, the operating model and the guest experience can
-                  each carry their weight. We invest alongside aligned capital
-                  partners.
-                </p>
+          <div class="disciplines" id="disciplines">
+            <article class="discipline is-open">
+              <h3 class="discipline__heading">
+                <button
+                  class="discipline__trigger"
+                  type="button"
+                  id="disc-1-t"
+                  aria-expanded="true"
+                  aria-controls="disc-1-p"
+                >
+                  <span class="discipline__index" aria-hidden="true">01</span>
+                  <span class="discipline__name">Boutique Hotel Development</span>
+                  <span class="discipline__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="discipline__panel" id="disc-1-p" role="region" aria-labelledby="disc-1-t">
+                <div class="discipline__panel-in">
+                  <div class="discipline__panel-content">
+                    <p class="discipline__lead">Land, Model &amp; Guest.</p>
+                    <p class="discipline__copy">
+                      We identify, structure and develop resort opportunities
+                      where the land, the operating model and the guest
+                      experience can each carry their weight, investing
+                      alongside aligned capital partners.
+                    </p>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="capability">
-              <span class="capability__num" aria-hidden="true">02</span>
-              <div class="capability__body">
-                <p class="capability__index">Capability II</p>
-                <h3 class="capability__title">Operating<br />Partnership</h3>
-                <p class="capability__copy">
-                  For owners seeking a partner rather than a brand label, we
-                  step in as operating principals &mdash; bringing pre&ndash;opening,
-                  leadership and ongoing performance accountability to every
-                  asset.
-                </p>
+            <article class="discipline">
+              <h3 class="discipline__heading">
+                <button
+                  class="discipline__trigger"
+                  type="button"
+                  id="disc-2-t"
+                  aria-expanded="false"
+                  aria-controls="disc-2-p"
+                >
+                  <span class="discipline__index" aria-hidden="true">02</span>
+                  <span class="discipline__name">Pre&ndash;opening Services</span>
+                  <span class="discipline__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="discipline__panel" id="disc-2-p" role="region" aria-labelledby="disc-2-t">
+                <div class="discipline__panel-in">
+                  <div class="discipline__panel-content">
+                    <p class="discipline__lead">Places begin with people.</p>
+                    <p class="discipline__copy">
+                      Four decades of operational depth taught us that
+                      hospitality is built before guests ever arrive. Every
+                      property in the portfolio starts with the culture,
+                      training and team that will run it.
+                    </p>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="capability">
-              <span class="capability__num" aria-hidden="true">03</span>
-              <div class="capability__body">
-                <p class="capability__index">Capability III</p>
-                <h3 class="capability__title">Brand<br />&amp; Concept Creation</h3>
-                <p class="capability__copy">
-                  Concepts that begin with place, not template. We build
-                  distinctive resort brands shaped around their landscape,
-                  their guest and the financial logic of the asset behind them.
-                </p>
-              </div>
-            </article>
-
-            <article class="capability">
-              <span class="capability__num" aria-hidden="true">04</span>
-              <div class="capability__body">
-                <p class="capability__index">Capability IV</p>
-                <h3 class="capability__title">Operational<br />Excellence</h3>
-                <p class="capability__copy">
-                  The advisory work that built our reputation continues to
-                  inform every property: training, service design and the
-                  disciplined rituals that make hospitality consistent without
-                  making it generic.
-                </p>
+            <article class="discipline">
+              <h3 class="discipline__heading">
+                <button
+                  class="discipline__trigger"
+                  type="button"
+                  id="disc-3-t"
+                  aria-expanded="false"
+                  aria-controls="disc-3-p"
+                >
+                  <span class="discipline__index" aria-hidden="true">03</span>
+                  <span class="discipline__name">Hotel Management Training</span>
+                  <span class="discipline__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="discipline__panel" id="disc-3-p" role="region" aria-labelledby="disc-3-t">
+                <div class="discipline__panel-in">
+                  <div class="discipline__panel-content">
+                    <p class="discipline__lead">Operational excellence is our constant.</p>
+                    <p class="discipline__copy">
+                      More than 40 years of opening and running luxury hotels
+                      across six countries is not a credential. It is the
+                      operating system. Every property we develop inherits that
+                      depth, and our hands&ndash;on commitment to a successful
+                      opening with sustainable frameworks.
+                    </p>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
-        </div>
-      </section>
-
-      <!-- ============ VALUES ============ -->
-      <section class="values" id="values" aria-labelledby="values-h">
-        <div class="bloom bloom--tl bloom--lavender-strong" aria-hidden="true"></div>
-        <div class="bloom bloom--br bloom--rose-strong" aria-hidden="true"></div>
-
-        <div class="container">
-          <header class="section-head section-head--center">
-            <p class="section-mark">VI &mdash; Principles</p>
-            <h2 class="display" id="values-h">
-              Our work is built on<br />
-              <em>our passion for hospitality.</em>
-            </h2>
-            <p class="section-head__lede">
-              We believe the hospitality industry is, and will continue to be,
-              a place where there is infinite potential for human relationships
-              to drive business results.
-            </p>
-          </header>
-
-          <ul class="value-grid" role="list">
-            <li class="value">
-              <span class="value__num">i</span>
-              <div class="value__rule"></div>
-              <h3 class="value__title">Genuine Care</h3>
-              <p class="value__body">We truly care about the people we serve and the people we work with.</p>
-            </li>
-            <li class="value">
-              <span class="value__num">ii</span>
-              <div class="value__rule"></div>
-              <h3 class="value__title">Knowledge</h3>
-              <p class="value__body">We strive to continue to learn and to be a source of sharing information with others.</p>
-            </li>
-            <li class="value">
-              <span class="value__num">iii</span>
-              <div class="value__rule"></div>
-              <h3 class="value__title">Passion</h3>
-              <p class="value__body">We are passionate about every aspect of our work &mdash; loving what we do, and having fun while we do it.</p>
-            </li>
-            <li class="value">
-              <span class="value__num">iv</span>
-              <div class="value__rule"></div>
-              <h3 class="value__title">Integrity</h3>
-              <p class="value__body">We conduct ourselves in a way we can be proud of, both when doing business and when interacting with others.</p>
-            </li>
-          </ul>
         </div>
       </section>
 
@@ -470,9 +615,10 @@
         <div class="cta__bloom cta__bloom--lavender" aria-hidden="true"></div>
         <div class="cta__bloom cta__bloom--rose" aria-hidden="true"></div>
         <div class="cta__grain" aria-hidden="true"></div>
+        <div class="sheen sheen--wide sheen--slow" aria-hidden="true"></div>
 
         <div class="container container--narrow cta__inner">
-          <p class="section-mark section-mark--light">VII &mdash; Inquiries</p>
+          <p class="section-mark section-mark--light">VI &middot; Inquiries</p>
           <h2 class="display display--lg cta__title" id="cta-h">
             For investment<br />
             &amp; partnership<br />
@@ -503,7 +649,7 @@
       <div class="container footer__inner">
         <div class="footer__brand">
           <img class="footer__logo" src="assets/img/brand/logo-02.png" alt="Inspire Hospitality" />
-          <p class="footer__tagline">To inspire hospitality in others.</p>
+          <p class="footer__tagline">Inspire hospitality in others.</p>
         </div>
 
         <nav class="footer__nav" aria-label="Footer platform">
@@ -516,7 +662,7 @@
         <nav class="footer__nav" aria-label="Footer company">
           <h4>Company</h4>
           <a href="portfolio.html">Portfolio</a>
-          <a href="index.html#values">Principles</a>
+          <a href="about.html#values">Principles</a>
           <a href="contact.html">Inquiries</a>
         </nav>
 

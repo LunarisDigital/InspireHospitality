@@ -104,7 +104,7 @@ html.intro-active body { overflow: hidden; }
   mix-blend-mode: screen;
   opacity: 0;
   will-change: transform, opacity;
-  animation: introShine 5s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation: introShine 8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 /* fine grain to break up banding */
@@ -194,16 +194,44 @@ html.intro-active body { overflow: hidden; }
   border-radius: 2px;
 }
 
-/* --- Exit transition: zoom + blur + fade, revealing the page --- */
+/* --- Exit transition: the splash dissolves upward while the logo glides
+   into the navbar and the hero settles in behind it. --- */
 .intro.is-exiting {
-  animation: introOut 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: introOut 0.95s cubic-bezier(0.6, 0, 0.2, 1) forwards;
   pointer-events: none;
 }
-.intro.is-exiting .intro__cue { opacity: 0; transition: opacity 0.25s; }
+.intro.is-exiting .intro__inner,
+.intro.is-exiting .intro__cue { animation: none; }
+.intro.is-exiting .intro__eyebrow,
+.intro.is-exiting .intro__tagline,
+.intro.is-exiting .intro__cue { opacity: 0; transition: opacity 0.3s ease; }
+/* The original logo is hidden; a fixed clone (built in JS) flies to the nav. */
+.intro.is-exiting .intro__logo { visibility: hidden; }
 
-/* Gentle rise of the hero as the intro lifts away */
+/* Flying logo clone — created, positioned and animated from script.js so the
+   mark appears to travel continuously from the splash into the header. */
+.intro-logo-fly {
+  position: fixed;
+  z-index: 10000;
+  margin: 0;
+  pointer-events: none;
+  transform-origin: top left;
+  filter: drop-shadow(0 8px 40px rgba(209, 169, 242, 0.35));
+  will-change: transform, filter;
+}
+.intro-logo-fly.is-flying {
+  transition:
+    transform 0.85s cubic-bezier(0.62, 0.01, 0.18, 1),
+    filter 0.85s ease;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.45));
+}
+
+/* Hero reveal behind the lifting splash: photo settles from darkness, copy rises. */
+body.intro-revealing #top .subhero__media {
+  animation: introMediaSettle 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 body.intro-revealing #top .subhero__content {
-  animation: introHeroRise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: introHeroRise 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
 }
 
 /* ---------------- keyframes ---------------- */
@@ -219,9 +247,9 @@ body.intro-revealing #top .subhero__content {
    then holds off-screen (the pause) until the cycle restarts. */
 @keyframes introShine {
   0%   { transform: translate(-50%, -50%) rotate(24deg) translateX(-145vw); opacity: 0; }
-  4%   { opacity: 1; }
-  20%  { opacity: 1; }
-  26%  { transform: translate(-50%, -50%) rotate(24deg) translateX(145vw);  opacity: 0; }
+  3%   { opacity: 1; }
+  42%  { opacity: 1; }
+  48%  { transform: translate(-50%, -50%) rotate(24deg) translateX(145vw);  opacity: 0; }
   100% { transform: translate(-50%, -50%) rotate(24deg) translateX(145vw);  opacity: 0; }
 }
 @keyframes introIn {
@@ -237,12 +265,16 @@ body.intro-revealing #top .subhero__content {
   50%      { transform: scaleY(1);   opacity: 1; }
 }
 @keyframes introOut {
-  0%   { opacity: 1; transform: scale(1);    filter: blur(0); }
-  100% { opacity: 0; transform: scale(1.08); filter: blur(10px); }
+  0%   { opacity: 1; transform: scale(1)    translateY(0);    filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.06) translateY(-4%);  filter: blur(14px); }
 }
 @keyframes introHeroRise {
-  from { opacity: 0; transform: translateY(26px); }
+  from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes introMediaSettle {
+  from { opacity: 0.35; transform: scale(1.08); }
+  to   { opacity: 1;    transform: scale(1); }
 }
 
 /* ---------------- reduced motion ---------------- */
@@ -258,7 +290,8 @@ body.intro-revealing #top .subhero__content {
   .intro__inner,
   .intro__cue { animation: none; }
   .intro.is-exiting { animation: introFadeOut 0.4s ease forwards; }
-  body.intro-revealing #top .subhero__content { animation: none; }
+  body.intro-revealing #top .subhero__content,
+  body.intro-revealing #top .subhero__media { animation: none; }
 }
 @keyframes introFadeOut {
   from { opacity: 1; }

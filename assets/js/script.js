@@ -6,24 +6,72 @@
   if (intro && document.documentElement.classList.contains("intro-active")) {
     let dismissed = false;
 
+    const reduceMotionIntro =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const dismiss = () => {
       if (dismissed) return;
       dismissed = true;
 
       try { sessionStorage.setItem("ih_intro_seen", "1"); } catch (e) {}
 
-      // animate the page in behind the lifting splash
+      // --- Shared-element move: fly the splash logo into the navbar logo.
+      //     Measure BEFORE adding exit classes so positions are accurate.
+      let fly = null;
+      const navLogo = document.querySelector(".nav__logo");
+      const introLogo = intro.querySelector(".intro__logo");
+      if (!reduceMotionIntro && navLogo && introLogo) {
+        const from = introLogo.getBoundingClientRect();
+        const to = navLogo.getBoundingClientRect();
+        if (from.width && to.width) {
+          fly = introLogo.cloneNode(true);
+          fly.className = "intro-logo-fly";
+          fly.removeAttribute("id");
+          fly.style.left = from.left + "px";
+          fly.style.top = from.top + "px";
+          fly.style.width = from.width + "px";
+          fly.style.height = "auto";
+          fly.style.transform = "translate(0, 0) scale(1)";
+          document.body.appendChild(fly);
+
+          // Hide the real nav logo until the clone lands exactly on it.
+          navLogo.style.opacity = "0";
+
+          const scale = to.width / from.width;
+          const dx = to.left - from.left;
+          const dy = to.top - from.top;
+          // Two rAFs so the start transform is committed before we transition.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              fly.classList.add("is-flying");
+              fly.style.transform =
+                "translate(" + dx + "px, " + dy + "px) scale(" + scale + ")";
+            });
+          });
+        }
+      }
+
+      // Animate the page in behind the lifting splash.
       document.body.classList.add("intro-revealing");
       intro.classList.add("is-exiting");
 
+      let finished = false;
       const finish = () => {
+        if (finished) return;
+        finished = true;
         document.documentElement.classList.remove("intro-active"); // unlock scroll + hide
         intro.setAttribute("aria-hidden", "true");
         document.body.classList.remove("intro-revealing");
+        if (fly && fly.parentNode) fly.parentNode.removeChild(fly);
+        // Reveal the real nav logo (the clone landed precisely here).
+        if (navLogo) navLogo.style.opacity = "";
         if (intro.parentNode) intro.parentNode.removeChild(intro);
       };
+      // The curtain fade (0.95s) outlasts the logo flight (0.85s), so finishing
+      // on its animationend guarantees the logo has already landed.
       intro.addEventListener("animationend", finish, { once: true });
-      setTimeout(finish, 1000); // fallback if animationend doesn't fire
+      setTimeout(finish, 1200); // fallback if animationend doesn't fire
     };
 
     // Dismiss on any meaningful interaction
@@ -224,7 +272,7 @@
       }
     });
 
-    // Only auto-advance while the banner is in view — saves resources
+    // Only auto-advance while the banner is in view (saves resources)
     if ("IntersectionObserver" in window) {
       const bio = new IntersectionObserver(
         (entries) => {
@@ -246,12 +294,155 @@
     if (counter) counter.textContent = pad(index + 1);
   }
 
+  // ---- Disciplines: interactive accordion (home, "What We Do") --------
+  const disciplines = document.getElementById("disciplines");
+  if (disciplines) {
+    const items = Array.from(disciplines.querySelectorAll(".discipline"));
+    const triggers = items.map((it) => it.querySelector(".discipline__trigger"));
+
+    const setOpen = (item, open) => {
+      item.classList.toggle("is-open", open);
+      const t = item.querySelector(".discipline__trigger");
+      if (t) t.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    triggers.forEach((trigger, i) => {
+      if (!trigger) return;
+
+      // Single-open accordion: opening one closes the others; an open row can
+      // be collapsed again by re-selecting it.
+      trigger.addEventListener("click", () => {
+        const item = items[i];
+        const willOpen = !item.classList.contains("is-open");
+        items.forEach((other) => { if (other !== item) setOpen(other, false); });
+        setOpen(item, willOpen);
+      });
+
+      // Roving keyboard navigation between the headers
+      trigger.addEventListener("keydown", (e) => {
+        let next = -1;
+        if (e.key === "ArrowDown") next = (i + 1) % triggers.length;
+        else if (e.key === "ArrowUp") next = (i - 1 + triggers.length) % triggers.length;
+        else if (e.key === "Home") next = 0;
+        else if (e.key === "End") next = triggers.length - 1;
+        if (next >= 0 && triggers[next]) { e.preventDefault(); triggers[next].focus(); }
+      });
+    });
+  }
+
+  // ---- Who We Are: interactive story timeline (home) ------------------
+  const journey = document.getElementById("journey");
+  if (journey) {
+    const nodes = Array.from(journey.querySelectorAll(".journey__node"));
+    const slides = Array.from(journey.querySelectorAll(".journey__slide"));
+    const panels = Array.from(journey.querySelectorAll(".journey__panel"));
+    const fill = journey.querySelector(".journey__rail-fill");
+    const prevBtn = journey.querySelector(".journey__arrow--prev");
+    const nextBtn = journey.querySelector(".journey__arrow--next");
+    const countCur = journey.querySelector(".journey__count-current");
+    const countTotal = journey.querySelector(".journey__count-total");
+
+    const total = nodes.length;
+    const interval = parseInt(journey.getAttribute("data-interval"), 10) || 7000;
+    const reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pad = (n) => String(n).padStart(2, "0");
+
+    let index = 0;
+    let timer = null;
+
+    if (countTotal) countTotal.textContent = pad(total);
+
+    function goTo(i, opts = {}) {
+      const next = ((i % total) + total) % total;
+      if (next === index && !opts.force) return;
+      index = next;
+
+      nodes.forEach((n, idx) => {
+        const on = idx === index;
+        n.classList.toggle("is-active", on);
+        n.setAttribute("aria-selected", on ? "true" : "false");
+        n.setAttribute("tabindex", on ? "0" : "-1");
+      });
+      slides.forEach((s, idx) => s.classList.toggle("is-active", idx === index));
+      panels.forEach((p, idx) => p.classList.toggle("is-active", idx === index));
+
+      if (fill) {
+        // Width spans the track between the first and last dot centres.
+        fill.style.width = (total > 1 ? (index / (total - 1)) * 100 : 0) + "%";
+      }
+      if (countCur) countCur.textContent = pad(index + 1);
+
+      if (opts.user) restartAuto();
+    }
+
+    function startAuto() {
+      if (reduceMotion || total < 2) return;
+      stopAuto();
+      timer = setInterval(() => goTo(index + 1), interval);
+    }
+    function stopAuto() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function restartAuto() {
+      if (timer) startAuto();
+    }
+
+    // Rail nodes + arrows
+    nodes.forEach((n, i) =>
+      n.addEventListener("click", () => goTo(i, { user: true }))
+    );
+    if (prevBtn) prevBtn.addEventListener("click", () => goTo(index - 1, { user: true }));
+    if (nextBtn) nextBtn.addEventListener("click", () => goTo(index + 1, { user: true }));
+
+    // Roving keyboard navigation across the rail (WAI-ARIA tablist)
+    journey.querySelector(".journey__rail").addEventListener("keydown", (e) => {
+      let to = -1;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") to = (index + 1) % total;
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") to = (index - 1 + total) % total;
+      else if (e.key === "Home") to = 0;
+      else if (e.key === "End") to = total - 1;
+      if (to >= 0) {
+        e.preventDefault();
+        goTo(to, { user: true });
+        nodes[to].focus();
+      }
+    });
+
+    // Pause auto-advance on hover / focus within the stage
+    journey.addEventListener("mouseenter", stopAuto);
+    journey.addEventListener("mouseleave", startAuto);
+    journey.addEventListener("focusin", stopAuto);
+    journey.addEventListener("focusout", (e) => {
+      if (!journey.contains(e.relatedTarget)) startAuto();
+    });
+
+    // Only auto-advance while the section is in view
+    if ("IntersectionObserver" in window) {
+      const jio = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) startAuto();
+            else stopAuto();
+          });
+        },
+        { threshold: 0.3 }
+      );
+      jio.observe(journey);
+    } else {
+      startAuto();
+    }
+
+    goTo(0, { force: true });
+  }
+
   // ---- Scroll reveal --------------------------------------------------
   const targets = document.querySelectorAll(
     ".positioning .positioning__inner, " +
       ".track .section-head, .stat, " +
       ".clients .section-head, .logos li, " +
-      ".platform .section-head, .capability, " +
+      ".platform .section-head, .discipline, " +
       ".values .section-head, .value, " +
       ".cta__inner, " +
       ".section .section-head, [data-reveal]"
@@ -300,7 +491,7 @@
         return;
       }
 
-      const subject = `Inquiry — ${type}${org ? " — " + org : ""}`;
+      const subject = `Inquiry: ${type}${org ? ", " + org : ""}`;
       const body =
         `Name: ${name}\n` +
         `Email: ${email}\n` +
@@ -351,7 +542,7 @@
     const projects = {
       avantgarde: {
         eyebrow: "Hotel Operations · Ningbo, China",
-        title: "Avantgarde — Porsche Carrera Cup Asia",
+        title: "Avantgarde: Porsche Carrera Cup Asia",
         body: "Avantgarde is a global brand experience agency entrusted to create the Porsche Carrera Cup Asia and lead the logistics for hosting Porsche VIP clients, drivers and vendors. We provided support and training for the hotel operations teams, worked with culinary and F&B teams for menus, food tastings and service, handled VIP rooms and guest logistics between the hotel and the race track to ensure an exceptional guest experience.",
         images: [
           { src: "assets/img/gallery/events/PCCA 8.jpg", alt: "Hotel service team in red Porsche-branded shirts at distanced rooftop terrace tables before the event" },
@@ -395,6 +586,35 @@
           { src: "assets/img/gallery/projects/7cb1d18df37e791d83aaa508bac7403.jpg", alt: "A row of crystal 'Best Team' star trophies at Ardor Gardens" },
           { src: "assets/img/gallery/projects/9a882c6b65536e4a2cc92e26ab0d738.jpg", alt: "The full pre-opening team gathered for a group photo in the ballroom" },
           { src: "assets/img/gallery/events/Ardor%20Gardens%20Training%202.jpg", alt: "The Ardor Gardens pre-opening team in white uniforms making a salute on the resort lawn" },
+        ],
+      },
+      k11artus: {
+        eyebrow: "Pre-Opening · Luxury Residences · Victoria Dockside, Hong Kong",
+        title: "K11 ARTUS",
+        body: "The K11 luxury flagship residences at Victoria Dockside in Hong Kong. We were entrusted to create the brand service culture and standards, training plans and facilitate the pre-opening simulations to prepare for the arrival of their discerning residents and guests.",
+        images: [
+          { src: "assets/img/gallery/projects/Photo22.jpg", alt: "Team members holding painted artist palettes at an easel painting session" },
+          { src: "assets/img/gallery/projects/photo1.jpg", alt: "A facilitator leading the K11 ARTUS service manifesto and 'Principles of Our Art' exercise" },
+          { src: "assets/img/gallery/projects/Photo%2014.jpg", alt: "The team holding up yellow name cards and giving a thumbs up" },
+          { src: "assets/img/gallery/projects/003.jpg", alt: "Staff in white artisan coats on stage during a pre-opening simulation" },
+          { src: "assets/img/gallery/projects/007.jpg", alt: "The team cheering during a Rooms Concierge service simulation" },
+          { src: "assets/img/gallery/projects/006.jpg", alt: "Team members gathered closely around a hands-on training task" },
+          { src: "assets/img/gallery/projects/002.jpg", alt: "The K11 ARTUS team beneath the Visualize Your Masterpiece wall" },
+          { src: "assets/img/gallery/projects/004.jpg", alt: "Staff raising department signs and cheering at a pre-opening rally" },
+          { src: "assets/img/gallery/projects/005.jpg", alt: "The pre-opening team with hands raised in a service culture session" },
+        ],
+      },
+      k11musea: {
+        eyebrow: "Pre-Opening · Luxury Retail · Victoria Dockside, Hong Kong",
+        title: "K11 MUSEA",
+        body: "A pioneer in the luxury cultural retail concept. As part of the pre-opening preparations for this flagship location, we were selected to elevate and train service standards and customer touchpoints to reflect a luxury retail experience.",
+        images: [
+          { src: "assets/img/gallery/events/20190805_IMG_7680.JPG", alt: "The K11 MUSEA pre-opening team gathered in their harbour-view office during training" },
+          { src: "assets/img/gallery/events/20190805_IMG_7672.JPG", alt: "The full K11 MUSEA team around a light cube in the office, with the Hong Kong skyline behind" },
+          { src: "assets/img/gallery/events/20190726_IMG_7518.JPG", alt: "The K11 MUSEA team seated together by the floor-to-ceiling office windows" },
+          { src: "assets/img/gallery/events/20190805_IMG_7674.JPG", alt: "Team members building a marshmallow structure in a hands-on training exercise" },
+          { src: "assets/img/gallery/projects/56c49d2ba43d66cfbc1997eeb9decab.jpg", alt: "The team celebrating their completed Castles in the Sky marshmallow tower" },
+          { src: "assets/img/gallery/events/20190722_IMG_7305.JPG", alt: "A team member illustrating a K11 MUSEA Fashion brand vision board" },
         ],
       },
     };

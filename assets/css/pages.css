@@ -149,7 +149,7 @@
 /* =============================================================
    GENERIC dark / cream section wrappers
    ============================================================= */
-.section { position: relative; overflow: hidden; }
+.section { position: relative; overflow: hidden; isolation: isolate; }
 .section--dark  { background: var(--bg-deep);  color: var(--text-primary); padding: clamp(110px,14vw,180px) 0; }
 .section--raised{ background: var(--bg-raised); color: var(--text-primary); padding: clamp(110px,14vw,180px) 0; }
 .section--cream {
@@ -177,6 +177,10 @@
 }
 .section--cream .display em { --text-grad: var(--gradient-on-light); }
 .section--cream .section-head__lede { color: var(--soft-charcoal); }
+/* Body copy defaults to light (for dark surfaces); restore dark ink on cream. */
+.section--cream .lede { color: var(--soft-charcoal); }
+.section--cream .team-card__name { color: var(--ink); }
+.section--cream .team-card__role { color: var(--plum); }
 
 /* =============================================================
    FEATURED WORK — project image cards (Home)
@@ -891,4 +895,304 @@
   .field--row { grid-template-columns: 1fr; }
   .timeline li { grid-template-columns: 1fr; gap: 8px; }
   .subhero { min-height: 60vh; padding-top: 150px; }
+}
+
+/* =============================================================
+   WHO WE ARE — interactive story timeline (Home #positioning)
+   A clickable three-chapter rail drives a cross-fading media frame
+   and a stack of editorial panels. Same tokens as the cream spread.
+   ============================================================= */
+.journey__head { max-width: 760px; margin: 0 0 clamp(48px, 6vw, 80px); }
+.journey__head .display { margin-bottom: 0; }
+
+/* ---- Clickable timeline rail ---- */
+.journey__rail {
+  position: relative;
+  list-style: none;
+  margin: 0 0 clamp(44px, 5vw, 68px);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 3vw, 40px);
+}
+/* The connecting line lives between the first and last dot centres
+   (1/6 .. 5/6 of the row), so it always meets the dots cleanly. */
+.journey__rail-track {
+  position: absolute;
+  top: 6px;
+  left: 16.6667%;
+  right: 16.6667%;
+  height: 2px;
+  background: var(--hairline-warm);
+  border-radius: 2px;
+  z-index: 0;
+}
+.journey__rail-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--gradient-on-light);
+  border-radius: 2px;
+  box-shadow: 0 0 16px rgba(176, 127, 208, 0.55);
+  transition: width 0.8s var(--ease-out);
+}
+.journey__rail-item { display: flex; justify-content: center; }
+
+.journey__node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: center;
+  color: inherit;
+}
+.journey__node-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--hairline-warm);
+  box-shadow: 0 0 0 0 rgba(176, 127, 208, 0);
+  transition: background 0.45s var(--ease-out), border-color 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+}
+.journey__node-year {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2.1vw, 30px);
+  line-height: 1;
+  color: var(--soft-charcoal);
+  transition: color 0.4s var(--ease-out), opacity 0.4s var(--ease-out);
+  opacity: 0.6;
+}
+.journey__node-label {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(31, 27, 46, 0.42);
+  transition: color 0.4s var(--ease-out);
+}
+.journey__node:hover .journey__node-dot,
+.journey__node:focus-visible .journey__node-dot {
+  border-color: var(--plum-light);
+  transform: scale(1.08);
+}
+.journey__node:hover .journey__node-year { opacity: 0.85; }
+.journey__node:focus-visible { outline: none; }
+.journey__node:focus-visible .journey__node-label { color: var(--plum); }
+
+.journey__node.is-active .journey__node-dot {
+  background: var(--gradient-on-light);
+  border-color: transparent;
+  box-shadow: 0 0 0 5px rgba(176, 127, 208, 0.16), 0 0 18px rgba(176, 127, 208, 0.6);
+  transform: scale(1.05);
+}
+.journey__node.is-active .journey__node-year {
+  opacity: 1;
+  background: var(--gradient-on-light);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.journey__node.is-active .journey__node-label { color: var(--ink); }
+
+/* ---- Stage body: media + text split ---- */
+.journey__body {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: clamp(36px, 5vw, 88px);
+}
+
+/* ---- Cross-fading media frame ---- */
+.journey__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-mid);
+  box-shadow: 0 44px 100px -54px rgba(0, 0, 0, 0.7);
+}
+.journey__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.9s var(--ease-out), visibility 0.9s var(--ease-out);
+}
+.journey__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform 1.2s var(--ease-out);
+}
+.journey__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.journey__slide.is-active img {
+  transform: scale(1);
+  animation: journeyZoom 9s ease-out forwards;
+}
+@keyframes journeyZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
+}
+.journey__count {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(26, 14, 32, 0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.7);
+}
+.journey__count-current { font-weight: 600; color: #fff; font-size: 14px; }
+.journey__count-sep { opacity: 0.5; }
+
+/* ---- Stacked text panels (all share one grid cell → no layout jump) ---- */
+.journey__panels { display: grid; }
+.journey__panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out),
+    visibility 0.7s var(--ease-out);
+  pointer-events: none;
+}
+.journey__panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0.1s;
+}
+/* Staggered rise of the panel's lines when it becomes active */
+.journey__panel > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.journey__panel.is-active > * { opacity: 1; transform: none; }
+.journey__panel.is-active > *:nth-child(1) { transition-delay: 0.16s; }
+.journey__panel.is-active > *:nth-child(2) { transition-delay: 0.27s; }
+.journey__panel.is-active > *:nth-child(3) { transition-delay: 0.38s; }
+
+.journey__kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--soft-charcoal);
+}
+.journey__kicker span {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 14px;
+  border-right: 1px solid var(--hairline-warm);
+  color: var(--plum);
+}
+.journey__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.14;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin: 0 0 24px;
+}
+.journey__title em {
+  font-style: italic;
+  background:
+    linear-gradient(110deg, transparent 36%, rgba(251, 232, 115, 0.9) 50%, transparent 64%),
+    var(--gradient-on-light);
+  background-size: 200% 100%, 100% 100%;
+  background-position: 200% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: textFlash 8.5s var(--ease-in-out) 2.5s infinite;
+}
+.journey__copy {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.18vw, 19px);
+  line-height: 1.72;
+  color: var(--soft-charcoal);
+  margin: 0;
+  max-width: 54ch;
+}
+
+/* ---- Controls ---- */
+.journey__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(30px, 3.4vw, 44px);
+  flex-wrap: wrap;
+}
+.journey__arrows { display: flex; gap: 12px; }
+.journey__arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-warm);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--plum);
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.35s var(--ease-out), background 0.35s var(--ease-out),
+    color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+.journey__arrow:hover {
+  border-color: var(--plum-light);
+  background: #fff;
+  color: var(--plum-deep);
+  transform: translateY(-2px);
+}
+.journey__arrow:active { transform: translateY(0); }
+.journey__arrow:focus-visible { outline: 2px solid var(--plum-light); outline-offset: 3px; }
+
+@media (max-width: 820px) {
+  .journey__body { grid-template-columns: 1fr; gap: 32px; }
+  .journey__media { order: -1; }
+}
+@media (max-width: 560px) {
+  .journey__rail { gap: 6px; }
+  .journey__node-year { font-size: 18px; }
+  .journey__node-label { font-size: 9px; letter-spacing: 0.18em; }
+  .journey__controls { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .journey__slide.is-active img { animation: none; transform: scale(1); }
 }
