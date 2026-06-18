@@ -439,6 +439,21 @@ em { font-style: italic; }
   filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(229, 186, 196, 0.7));
 }
 
+/* Home: full-colour brand lockup at the top of the page, flipping to a
+   white silhouette once the bar turns solid on scroll. */
+.nav__logo--colour {
+  filter: drop-shadow(0 1px 12px rgba(26, 14, 32, 0.45));
+}
+.nav__brand:hover .nav__logo--colour {
+  filter: drop-shadow(0 1px 16px rgba(209, 169, 242, 0.55));
+}
+.nav.is-scrolled .nav__logo--colour {
+  filter: brightness(0) invert(1) drop-shadow(0 0 14px rgba(209, 169, 242, 0.4));
+}
+.nav.is-scrolled .nav__brand:hover .nav__logo--colour {
+  filter: brightness(0) invert(1) drop-shadow(0 0 22px rgba(229, 186, 196, 0.7));
+}
+
 .nav__menu {
   display: flex;
   align-items: center;
@@ -1502,6 +1517,18 @@ em { font-style: italic; }
   line-height: 1.75;
   color: var(--text-secondary);
   margin: 0;
+}
+
+.discipline__copy + .discipline__copy {
+  margin-top: 1rem;
+}
+
+.discipline__services {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary, var(--text-secondary));
+  opacity: 0.78;
 }
 
 @media (prefers-reduced-motion: reduce) {

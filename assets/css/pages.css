@@ -102,8 +102,36 @@
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   filter: drop-shadow(0 0 28px rgba(229,186,196,0.35));
-  animation: textFlash 9s var(--ease-in-out) 1.6s infinite;
+  animation: textFlash 11s var(--ease-in-out) 1.6s infinite;
 }
+/* "Inspire hospitality" rests as the normal off-white, with a purple→yellow
+   gradient band that sweeps across once in a while. */
+.subhero__title-flash {
+  background:
+    linear-gradient(110deg,
+      transparent 38%,
+      #6E4D85 44%,
+      #C9A5E8 48%,
+      #F2D39D 52%,
+      #FBE873 56%,
+      transparent 62%),
+    linear-gradient(0deg, var(--text-primary), var(--text-primary));
+  background-size: 220% 100%, 100% 100%;
+  background-position: 200% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: titleFlash 6s linear 1.5s infinite;
+}
+@keyframes titleFlash {
+  0%   { background-position: 200% 0, 0 0; }
+  45%  { background-position: -120% 0, 0 0; }
+  100% { background-position: -120% 0, 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .subhero__title-flash { animation: none; }
+}
+
 .subhero__lede {
   font-size: clamp(16px, 1.2vw, 19px);
   line-height: 1.7;
@@ -133,17 +161,94 @@
 }
 .subhero__actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: clamp(34px, 4vw, 46px); }
 .subhero--lead .subhero__lede { margin-bottom: 0; }
-.subhero__scroll {
-  position: absolute; bottom: 30px; right: clamp(20px, 5vw, 64px); z-index: 4;
-  display: inline-flex; align-items: center; gap: 14px;
-  font-size: 10px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase;
-  color: var(--text-muted);
+
+/* Home hero: a polished metallic-purple field instead of a photograph,
+   with a slight warm-yellow glow on the right. */
+.subhero--lead .subhero__media {
+  background:
+    /* slight bit of yellow on the right */
+    radial-gradient(ellipse 50% 62% at 93% 30%, rgba(242, 211, 157, 0.34) 0%, rgba(251, 232, 115, 0.13) 36%, transparent 66%),
+    /* lavender metallic lift, upper right */
+    radial-gradient(ellipse 58% 56% at 82% 16%, rgba(209, 169, 242, 0.45) 0%, transparent 56%),
+    /* metallic lavender lift, left-centre */
+    radial-gradient(ellipse 46% 56% at 6% 44%, rgba(201, 165, 232, 0.30) 0%, transparent 60%),
+    /* plum depth, lower left */
+    radial-gradient(ellipse 62% 58% at 8% 90%, rgba(91, 58, 107, 0.55) 0%, transparent 60%),
+    /* polished metallic purple — sharp specular banding reads as reflective metal */
+    linear-gradient(118deg,
+      #140A1A 0%,
+      #3A2349 6%,
+      #7C5A92 11%,
+      #2C1A38 18%,
+      #1E1228 24%,
+      #4A2E59 32%,
+      #835D99 41%,
+      #3A2349 48%,
+      #6E4D85 56%,
+      #C2A0E0 63%,
+      #5B3A6B 69%,
+      #2C1A38 82%,
+      #160B1C 100%);
 }
-.subhero__scroll-line { width: 56px; height: 1px; background: rgba(242,235,224,0.25); position: relative; overflow: hidden; }
-.subhero__scroll-line::after {
-  content: ""; position: absolute; top: 0; left: -50%; width: 50%; height: 100%;
-  background: linear-gradient(90deg, transparent, var(--lavender), transparent);
-  animation: scrollLine 2.6s var(--ease-in-out) infinite;
+/* A warm yellow flash that sweeps across the hero background now and then */
+.subhero--lead .subhero__flash {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(242, 211, 157, 0.20) 47%,
+    rgba(251, 232, 115, 0.55) 50%,
+    rgba(242, 211, 157, 0.20) 53%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  animation: heroYellowFlash 9s linear 2s infinite;
+}
+@keyframes heroYellowFlash {
+  0%        { background-position: 200% 0; opacity: 0; }
+  4%        { opacity: 1; }
+  34%       { background-position: -120% 0; opacity: 1; }
+  40%, 100% { background-position: -120% 0; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .subhero--lead .subhero__flash { animation: none; opacity: 0; }
+}
+
+/* Brushed-metal striations along the polish direction */
+.subhero--lead .subhero__media::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0.05) 1px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(255, 255, 255, 0) 3px
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+}
+/* A crisp specular glint, like light catching polished metal */
+.subhero--lead .subhero__media::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    transparent 6%,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(209, 169, 242, 0.16) 12%,
+    rgba(255, 255, 255, 0.05) 14%,
+    transparent 19%,
+    transparent 53%,
+    rgba(255, 255, 255, 0.06) 60%,
+    rgba(255, 249, 197, 0.18) 63%,
+    rgba(255, 255, 255, 0.10) 66%,
+    transparent 71%
+  );
+  mix-blend-mode: screen;
 }
 
 /* =============================================================
