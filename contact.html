@@ -38,130 +38,176 @@
     </header>
 
     <main id="main">
-      <!-- ============ SUBHERO ============ -->
-      <section class="subhero" aria-labelledby="contact-h">
-        <div class="subhero__media" aria-hidden="true">
-          <img src="assets/img/contact/%E6%82%A6%E8%89%BA%E8%87%B3%E5%B0%8A%E7%A7%81%E5%AE%B6%E8%8A%B1%E5%9B%AD%E5%A5%97%E6%88%BF%20(2).JPG" alt="" />
-        </div>
-        <div class="subhero__scrim" aria-hidden="true"></div>
-        <div class="subhero__grain" aria-hidden="true"></div>
-        <div class="container subhero__content">
-          <p class="subhero__eyebrow">Contact Inspire Hospitality</p>
-          <h1 class="subhero__title" id="contact-h">
-            Begin a <em>conversation.</em>
-          </h1>
-          <p class="subhero__lede">
-            We are open to conversations with aligned capital partners, owners
-            and operators. Tell us a little about what you have in mind.
-            Discretion assured.
-          </p>
-        </div>
-        <div class="subhero__hairline" aria-hidden="true"></div>
-      </section>
-
-      <!-- ============ CONTACT FORM ============ -->
-      <section class="section section--dark" aria-labelledby="form-h">
+      <!-- ============ CONTACT / DIRECT BOOKING ============ -->
+      <section class="section section--dark" id="book" aria-labelledby="book-h">
         <div class="bloom bloom--tr bloom--soft" aria-hidden="true"></div>
         <div class="sheen sheen--lilac sheen--slow" aria-hidden="true"></div>
         <div class="container">
-          <div class="contact-layout">
-            <div>
-              <header class="section-head" style="margin-bottom: clamp(32px, 4vw, 48px);">
-                <p class="section-mark section-mark--light">I &middot; Inquiries</p>
-                <h2 class="display display--sm" id="form-h">
-                  Tell us <em>what you&rsquo;re building.</em>
-                </h2>
-              </header>
+          <div class="contact-single">
+            <header class="section-head" style="margin-bottom: clamp(32px, 4vw, 48px);">
+              <p class="section-mark section-mark--light">I &middot; Inquiries</p>
+              <h1 class="display display--sm" id="book-h">
+                Tell us <em>what you&rsquo;re building.</em>
+              </h1>
+              <p class="booking__intro">
+                Share a few details and we&rsquo;ll reply, usually within two
+                business days. Prefer to talk? Add a consultation time below
+                &mdash; it&rsquo;s entirely optional.
+              </p>
+            </header>
 
-              <form class="contact-form" id="contact-form" novalidate>
-                <div class="field--row">
-                  <div class="field">
-                    <label for="cf-name">Name</label>
-                    <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Your full name" required />
-                  </div>
-                  <div class="field">
-                    <label for="cf-org">Organisation</label>
-                    <input type="text" id="cf-org" name="organisation" autocomplete="organization" placeholder="Company or fund" />
-                  </div>
-                </div>
-
-                <div class="field--row">
-                  <div class="field">
-                    <label for="cf-email">Email</label>
-                    <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="you@company.com" required />
-                  </div>
-                  <div class="field">
-                    <label for="cf-type">Nature of Inquiry</label>
-                    <select id="cf-type" name="type">
-                      <option>Investment &amp; Partnership</option>
-                      <option>Operating Partnership</option>
-                      <option>Brand &amp; Concept Creation</option>
-                      <option>Education &amp; Training</option>
-                      <option>Press &amp; Media</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                </div>
-
+            <form class="contact-form" id="booking-form" novalidate>
+              <div class="field--row">
                 <div class="field">
-                  <label for="cf-message">Message</label>
-                  <textarea id="cf-message" name="message" placeholder="A few lines on the place, the partnership or the question you have in mind." required></textarea>
+                  <label for="bk-name">Name</label>
+                  <input type="text" id="bk-name" name="name" autocomplete="name" placeholder="Your full name" required />
+                </div>
+                <div class="field">
+                  <label for="bk-email">Email</label>
+                  <input type="email" id="bk-email" name="email" autocomplete="email" placeholder="you@company.com" required />
+                </div>
+              </div>
+
+              <div class="field--row">
+                <div class="field">
+                  <label for="bk-org">Organisation</label>
+                  <input type="text" id="bk-org" name="organisation" autocomplete="organization" placeholder="Company or fund (optional)" />
+                </div>
+                <div class="field">
+                  <label for="bk-type">Nature of Inquiry</label>
+                  <select id="bk-type" name="type">
+                    <option>Investment &amp; Partnership</option>
+                    <option>Operating Partnership</option>
+                    <option>Brand &amp; Concept Creation</option>
+                    <option>Education &amp; Training</option>
+                    <option>Press &amp; Media</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="bk-message">Message</label>
+                <textarea id="bk-message" name="message" placeholder="A few lines on the place, the partnership or the question you have in mind." required></textarea>
+              </div>
+
+              <fieldset class="booking-panel">
+                <div class="booking-panel__head">
+                  <label class="booking__optin">
+                    <input type="checkbox" id="booking-optin" />
+                    <span class="booking__optin-box" aria-hidden="true"></span>
+                    <span class="booking__optin-text">
+                      <strong>Book a consultation time</strong>
+                      <em>Choose a 30-minute slot and we&rsquo;ll hold it pending confirmation.</em>
+                    </span>
+                  </label>
+                  <span class="booking-panel__tag">Optional</span>
                 </div>
 
-                <div class="contact-form__actions">
-                  <button class="btn btn--primary" type="submit">
-                    <span>Send Inquiry</span>
-                    <span class="btn__arrow" aria-hidden="true">&rarr;</span>
-                  </button>
-                  <span class="form-note">We reply to every serious inquiry, usually within two business days.</span>
-                </div>
-                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-              </form>
-            </div>
+                <div class="booking-widget" id="booking-optional" hidden>
+                  <div class="booking-cal">
+                    <div class="booking__calendar" id="booking-calendar">
+                      <div class="booking__cal-head">
+                        <button class="booking__cal-nav" type="button" id="cal-prev" aria-label="Previous month">&lsaquo;</button>
+                        <span class="booking__cal-title" id="cal-month" aria-live="polite"></span>
+                        <button class="booking__cal-nav" type="button" id="cal-next" aria-label="Next month">&rsaquo;</button>
+                      </div>
+                      <div class="booking__cal-dow" id="cal-dow" aria-hidden="true"></div>
+                      <div class="booking__cal-days" id="cal-days" role="grid"></div>
+                    </div>
+                  </div>
 
-            <aside class="contact-aside">
-              <div class="contact-block">
-                <p class="contact-block__label">Direct</p>
-                <a href="mailto:hello@inspirehospitality.com">hello@inspirehospitality.com</a>
-                <p class="contact-block__sub">Discreet correspondence welcomed.</p>
+                  <div class="booking-times">
+                    <p class="booking__showing">Times for <strong id="booking-date-label">&mdash;</strong></p>
+                    <p class="booking__tz" id="booking-tz" aria-hidden="true"></p>
+                    <div class="booking__slots" id="booking-slots" role="group" aria-label="Available times">
+                      <p class="booking__slots-empty">Pick a date on the calendar.</p>
+                    </div>
+                    <p class="booking__selected" id="booking-selected" aria-live="polite"></p>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="contact-form__actions">
+                <button class="btn btn--primary" type="submit" id="booking-submit">
+                  <span id="booking-submit-label">Send Inquiry</span>
+                  <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+                </button>
+                <span class="form-note">We reply to every serious inquiry, usually within two business days.</span>
               </div>
-              <div class="contact-block">
-                <p class="contact-block__label">For Investors</p>
-                <p>We share materials privately with aligned capital partners on request.</p>
-              </div>
-              <div class="contact-block">
-                <p class="contact-block__label">Where We Operate</p>
-                <p>China &middot; Switzerland<br />United States &middot; Dubai</p>
-                <p class="contact-block__sub">A multilingual team, operating across cultures and continents.</p>
-              </div>
-            </aside>
+              <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
         </div>
       </section>
 
-      <!-- ============ CLOSING CONSULTATION BAND ============ -->
-      <section class="section section--raised section--edge" aria-labelledby="consult-h">
+      <!-- ============ FAQ ============ -->
+      <section class="section section--raised section--edge" aria-labelledby="faq-h">
         <div class="platform__grain" aria-hidden="true"></div>
         <div class="container">
-          <div class="story-grid" data-reveal>
-            <div class="story__media media-frame">
-              <img src="assets/img/about/195acda952c3cd20348a50e77873c89.jpg" alt="An Inspire Hospitality consultation session in progress" loading="lazy" />
-            </div>
-            <div class="story__body">
-              <p class="story__eyebrow">How We Work</p>
-              <h3 class="story__title">A considered conversation, <em>not a pitch.</em></h3>
-              <p class="lede">
-                Every engagement starts the same way, by understanding the
-                place, the people and the financial logic before anything else.
-                We listen first, then bring two decades of operating experience
-                to bear.
-              </p>
-              <p class="lede">
-                Whether you are an owner seeking a partner, an investor exploring
-                the sector, or an institution building an education program, we
-                would be glad to talk.
-              </p>
-            </div>
+          <header class="section-head section-head--center" style="margin-bottom: clamp(32px, 4vw, 56px);">
+            <p class="section-mark">II &middot; FAQ</p>
+            <h2 class="display display--sm" id="faq-h">
+              Questions, <em>answered.</em>
+            </h2>
+          </header>
+
+          <div class="faq" data-reveal>
+            <details class="faq__item">
+              <summary class="faq__q">
+                Question 1
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__a">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__q">
+                Question 2
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__a">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__q">
+                Question 3
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__a">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq__item">
+              <summary class="faq__q">
+                Question 4
+                <span class="faq__icon" aria-hidden="true"></span>
+              </summary>
+              <div class="faq__a">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                </p>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -198,6 +244,7 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="assets/js/script.js" defer></script>
   </body>
 </html>

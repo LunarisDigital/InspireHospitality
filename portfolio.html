@@ -48,32 +48,16 @@
         <div class="container subhero__content">
           <p class="subhero__eyebrow">Portfolio</p>
           <h1 class="subhero__title" id="folio-h">
-            Places we have <em>shaped.</em>
+            The places and experiences we have <em>shaped.</em>
           </h1>
           <p class="subhero__lede">
-            Cultural museum-hotels, boutique wellness-led stays and the forums
-            that bring the industry together. Each project begins with
-            its place, its heritage and the guest who will one day arrive.
+            Culture-led hotels, lifestyle residences, multi-use developments and
+            industry forums. Each project begins with a deep understanding of its
+            place. Each experience is created by the people we inspire to deliver
+            it.
           </p>
         </div>
         <div class="subhero__hairline" aria-hidden="true"></div>
-      </section>
-
-      <!-- ============ INTRO ============ -->
-      <section class="section section--cream section--edge" aria-labelledby="intro-h">
-        <div class="bloom bloom--tl" aria-hidden="true"></div>
-        <div class="container container--narrow prose-narrow">
-          <p class="section-mark">Selected Work</p>
-          <h2 class="display display--sm" id="intro-h">
-            A portfolio built on <em>operational depth.</em>
-          </h2>
-          <p class="lede">
-            Two decades of opening and running hotels across six countries
-            inform every place in the portfolio, from heritage
-            museum-hotels to private garden suites. Select a category, or open
-            any image to view it in full.
-          </p>
-        </div>
       </section>
 
       <!-- ============ GALLERY ============ -->
@@ -88,29 +72,37 @@
             </h2>
           </header>
 
+          <div class="folio-filter" role="group" aria-label="Filter portfolio by category">
+            <button class="folio-filter__btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="folio-filter__btn" type="button" data-filter="hotels" aria-pressed="false">Hotels &amp; Residences</button>
+            <button class="folio-filter__btn" type="button" data-filter="wellness" aria-pressed="false">Luxury Retails &amp; Wellness</button>
+            <button class="folio-filter__btn" type="button" data-filter="vip" aria-pressed="false">VIP Experiences</button>
+            <button class="folio-filter__btn" type="button" data-filter="forums" aria-pressed="false">Forums &amp; Education</button>
+          </div>
+
           <div class="folio-grid" id="folio-grid">
             <!-- Avantgarde: Porsche Carrera Cup Asia (real project; opens a gallery) -->
-            <button class="folio-item" data-project="avantgarde" data-cat="porsche" data-title="Avantgarde: Porsche Carrera Cup Asia" aria-label="Open the Avantgarde, Porsche Carrera Cup Asia gallery">
+            <button class="folio-item folio-item--feature" data-project="avantgarde" data-cat="vip" data-title="Avantgarde" aria-label="Open the Avantgarde gallery">
               <img src="assets/img/gallery/events/PCCA%203.jpg" alt="Guests at a red-lit evening reception beside a Porsche 911 race car" loading="lazy" />
               <div class="folio-item__scrim" aria-hidden="true"></div>
               <div class="folio-item__cap">
-                <p class="folio-item__tag">Hotel Operations &middot; Ningbo, China</p>
-                <h3 class="folio-item__title">Avantgarde: Porsche Carrera Cup Asia</h3>
+                <p class="folio-item__tag">VIP Hotel Operations, Porsche Carrera Cup Asia</p>
+                <h3 class="folio-item__title">Avantgarde</h3>
               </div>
             </button>
 
             <!-- Six Arts Culture Park (real project; opens a gallery) -->
-            <button class="folio-item" data-project="sixarts" data-cat="museum" data-title="Six Arts Culture Park" aria-label="Open the Six Arts Culture Park gallery">
+            <button class="folio-item" data-project="sixarts" data-cat="forums" data-title="Six Arts Culture Park" aria-label="Open the Six Arts Culture Park gallery">
               <img src="assets/img/home/museum.jpg" alt="The Six Arts Museum facade with colourful panels and a traditional pavilion gate" loading="lazy" />
               <div class="folio-item__scrim" aria-hidden="true"></div>
               <div class="folio-item__cap">
-                <p class="folio-item__tag">Property Management &middot; Suzhou, China</p>
+                <p class="folio-item__tag">Property Management &middot; Lili Ancient Town, Suzhou, China</p>
                 <h3 class="folio-item__title">Six Arts Culture Park</h3>
               </div>
             </button>
 
             <!-- Ardor Gardens by Lendlease (real project; opens a gallery) -->
-            <button class="folio-item" data-project="ardor" data-cat="resort" data-title="Ardor Gardens by Lendlease" aria-label="Open the Ardor Gardens by Lendlease gallery">
+            <button class="folio-item" data-project="ardor" data-cat="wellness" data-title="Ardor Gardens by Lendlease" aria-label="Open the Ardor Gardens by Lendlease gallery">
               <img src="assets/img/gallery/projects/Ardor%20Gardens%20Thumbail%20Image.jpg" alt="Architectural rendering of the Ardor Gardens senior living resort with landscaped gardens and a lily pond" loading="lazy" />
               <div class="folio-item__scrim" aria-hidden="true"></div>
               <div class="folio-item__cap">
@@ -120,7 +112,7 @@
             </button>
 
             <!-- K11 ARTUS (real project; opens a gallery) -->
-            <button class="folio-item" data-project="k11artus" data-cat="residences" data-title="K11 ARTUS" aria-label="Open the K11 ARTUS gallery">
+            <button class="folio-item" data-project="k11artus" data-cat="hotels" data-title="K11 ARTUS" aria-label="Open the K11 ARTUS gallery">
               <img src="assets/img/gallery/projects/002.jpg" alt="The K11 ARTUS pre-opening team beneath the Visualize Your Masterpiece wall" loading="lazy" />
               <div class="folio-item__scrim" aria-hidden="true"></div>
               <div class="folio-item__cap">
@@ -130,7 +122,7 @@
             </button>
 
             <!-- K11 MUSEA (real project; opens a gallery) -->
-            <button class="folio-item" data-project="k11musea" data-cat="retail" data-title="K11 MUSEA" aria-label="Open the K11 MUSEA gallery">
+            <button class="folio-item folio-item--wide" data-project="k11musea" data-cat="wellness" data-title="K11 MUSEA" aria-label="Open the K11 MUSEA gallery">
               <img src="assets/img/gallery/events/20190805_IMG_7672.JPG" alt="The K11 MUSEA pre-opening team gathered around a light cube in their harbour-view office" loading="lazy" />
               <div class="folio-item__scrim" aria-hidden="true"></div>
               <div class="folio-item__cap">
@@ -138,7 +130,79 @@
                 <h3 class="folio-item__title">K11 MUSEA</h3>
               </div>
             </button>
+
+            <!-- Huazhu Hotels: Crystal Orange Brand Concept (real project; opens a gallery) -->
+            <button class="folio-item" data-project="huazhu" data-cat="hotels" data-title="Huazhu Hotels" aria-label="Open the Huazhu Hotels gallery">
+              <img src="assets/img/gallery/HuazhuHotels/e6ee80_80b2672c39e940a58f4f1e090b48cd03~mv2.avif" alt="Crystal Orange Hotels whiskey bar brand concept design" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Brand &amp; Design Consultancy &middot; Crystal Orange Brand Concept &middot; Shanghai, China</p>
+                <h3 class="folio-item__title">Huazhu Hotels</h3>
+              </div>
+            </button>
+
+            <!-- Simon Li Furniture (real project; opens a gallery) -->
+            <button class="folio-item" data-project="simonli" data-cat="forums" data-title="Simon Li Furniture" aria-label="Open the Simon Li Furniture gallery">
+              <img src="assets/img/gallery/SimonLiFurniture/graduation-group.jpg" alt="Simon Li Furniture team in graduation caps after their Inspire Hospitality service training" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Service Training &middot; Shanghai, China</p>
+                <h3 class="folio-item__title">Simon Li Furniture</h3>
+              </div>
+            </button>
+
+            <!-- L'Catterton: Will's VIP Fitness (real project; opens a gallery) -->
+            <button class="folio-item folio-item--feature" data-project="lcatterton" data-cat="wellness" data-title="L&rsquo;Catterton Private Equity Firm" aria-label="Open the L'Catterton, Will's VIP Fitness gallery">
+              <img src="assets/img/gallery/WillsVIPFitness/fitness-team.jpg" alt="The Will's VIP Fitness team after their Inspire Hospitality service training" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Service Training &middot; Will&rsquo;s VIP Fitness &middot; Shanghai, China</p>
+                <h3 class="folio-item__title">L&rsquo;Catterton Private Equity Firm</h3>
+              </div>
+            </button>
+
+            <!-- Stay Inspired Interview Series (real project; opens a gallery) -->
+            <button class="folio-item" data-project="stayinspired" data-cat="forums" data-title="Stay Inspired Interview Series" aria-label="Open the Stay Inspired Interview Series gallery">
+              <img src="assets/img/gallery/StayInspired/interview.jpg" alt="An on-stage interview during the Stay Inspired Interview Series" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Interview Series &middot; 2020&ndash;2021</p>
+                <h3 class="folio-item__title">Stay Inspired Interview Series</h3>
+              </div>
+            </button>
+
+            <!-- Ignite & Inspire Forum (real project; opens a gallery) -->
+            <button class="folio-item folio-item--wide" data-project="igniteinspire" data-cat="forums" data-title="Ignite &amp; Inspire Forum" aria-label="Open the Ignite and Inspire Forum gallery">
+              <img src="assets/img/gallery/IgniteInspire/04-group-photo.jpg" alt="The full group of attendees at the Ignite &amp; Inspire Hospitality Forum" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Hospitality Forum &middot; Shanghai &middot; 2021</p>
+                <h3 class="folio-item__title">Ignite &amp; Inspire Forum</h3>
+              </div>
+            </button>
+
+            <!-- Inspire Women in Hospitality Forum (real project; opens a gallery) -->
+            <button class="folio-item" data-project="womeninhospitality" data-cat="forums" data-title="Inspire Women in Hospitality Forum" aria-label="Open the Inspire Women in Hospitality Forum gallery">
+              <img src="assets/img/gallery/WomenInHospitality/01-group-photo.jpg" alt="The full group of attendees at the Inspire Women in Hospitality Forum" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Women&rsquo;s Leadership Forum &middot; Shanghai &middot; 2019</p>
+                <h3 class="folio-item__title">Inspire Women in Hospitality Forum</h3>
+              </div>
+            </button>
+
+            <!-- Hospitality Conferences & Lectures (real project; opens a gallery) -->
+            <button class="folio-item" data-project="conferenceslectures" data-cat="forums" data-title="Hospitality Conferences &amp; Lectures" aria-label="Open the Hospitality Conferences and Lectures gallery">
+              <img src="assets/img/gallery/ConferencesLectures/05-school-group.jpg" alt="A group photo at a hospitality school during a guest lecture" loading="lazy" />
+              <div class="folio-item__scrim" aria-hidden="true"></div>
+              <div class="folio-item__cap">
+                <p class="folio-item__tag">Conferences &amp; Lectures &middot; 2018&ndash;2022</p>
+                <h3 class="folio-item__title">Hospitality Conferences &amp; Lectures</h3>
+              </div>
+            </button>
           </div>
+
+          <p class="folio-empty">No projects in this category yet.</p>
         </div>
       </section>
 
@@ -183,7 +247,7 @@
           <h2 class="project__title" id="project-title"></h2>
           <p class="project__body" id="project-body"></p>
         </header>
-        <div class="project__grid" id="project-grid"></div>
+        <div class="project__gallery" id="project-grid"></div>
       </div>
     </div>
 
